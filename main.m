@@ -3,7 +3,7 @@
 //  bluewoki
 //
 //  Created by Adrian on 6/29/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
+//  Copyright akosma software 2009. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

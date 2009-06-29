@@ -19,6 +19,7 @@
 		3A5FBAF80FF8B0D50060478C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF60FF8B0D50060478C /* Default.png */; };
 		3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF70FF8B0D50060478C /* Icon.png */; };
 		3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6C9440FF8B7F000312D0A /* MainWindow.xib */; };
+		3AF6F7100FF8D9590083EA15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6F70E0FF8D9590083EA15 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,9 @@
 		3A5FBAF60FF8B0D50060478C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3A5FBAF70FF8B0D50060478C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3AF6C9440FF8B7F000312D0A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		3AF6F70F0FF8D9590083EA15 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3AF6F7140FF8D9C40083EA15 /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3AF6F7150FF8D9D60083EA15 /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* bluewoki-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bluewoki-Info.plist"; path = "../bluewoki-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +106,7 @@
 		3A22AD4C0FF8ACC100E867BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3AF6F70D0FF8D93C0083EA15 /* Strings */,
 				3AF6C9430FF8B7F000312D0A /* NIBs */,
 				3A5FBAF50FF8B0D50060478C /* Images */,
 				8D1107310486CEB800E47090 /* bluewoki-Info.plist */,
@@ -136,6 +141,14 @@
 			path = NIBs;
 			sourceTree = "<group>";
 		};
+		3AF6F70D0FF8D93C0083EA15 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				3AF6F70E0FF8D9590083EA15 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +177,16 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "bluewoki" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				fr,
+				Spanish,
+				en,
+				es,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -182,6 +205,7 @@
 				3A5FBAF80FF8B0D50060478C /* Default.png in Resources */,
 				3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */,
 				3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */,
+				3AF6F7100FF8D9590083EA15 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +222,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3AF6F70E0FF8D9590083EA15 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AF6F70F0FF8D9590083EA15 /* en */,
+				3AF6F7140FF8D9C40083EA15 /* es */,
+				3AF6F7150FF8D9D60083EA15 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

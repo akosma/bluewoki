@@ -45,7 +45,7 @@
     AudioSessionSetActive(true);
     
     [GKVoiceChatService defaultVoiceChatService].client = self;
-    statusLabel.text = @"ready";
+    statusLabel.text = NSLocalizedString(@"ready", @"Used when the application starts and after the peer disconnects");
 }
 
 - (void)dealloc 
@@ -95,7 +95,8 @@
     [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
                                                                             error:nil];
     
-    statusLabel.text = [NSString stringWithFormat:@"connected with\n%@", [chatSession displayNameForPeer:peerID]];
+    statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"connected with", @"Shows who we're talking to"), 
+                                                    [chatSession displayNameForPeer:peerID]];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     [UIDevice currentDevice].proximityMonitoringEnabled = YES;
     connectButton.enabled = NO;
@@ -125,11 +126,11 @@
                 break;
 
             case GKPeerStateDisconnected:
-                [self closeConnectionWithMessage:@"peer disconnected"];
+                [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
                 break;
 
             case GKPeerStateConnecting:
-                statusLabel.text = @"connecting";
+                statusLabel.text = NSLocalizedString(@"connecting", @"Shown while the connection is negotiated");
                 break;
                 
             default:
@@ -142,7 +143,7 @@
 {
     if (session == chatSession)
     {
-        [self closeConnectionWithMessage:@"error"];
+        [self closeConnectionWithMessage:NSLocalizedString(@"error", @"Shown when the connection generated an error")];
     }
 }
 
@@ -185,7 +186,7 @@
 
 - (void)resetInterface
 {
-    statusLabel.text = @"ready";
+    statusLabel.text = NSLocalizedString(@"ready", @"Used when the application starts and after the peer disconnects");
 }
 
 @end
