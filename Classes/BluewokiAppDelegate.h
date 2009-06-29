@@ -16,6 +16,7 @@
 {
     IBOutlet UIWindow *window;
     IBOutlet UILabel *statusLabel;
+    IBOutlet UIButton *connectButton;
     GKPeerPickerController *pickerController;
     GKSession *chatSession;
 }

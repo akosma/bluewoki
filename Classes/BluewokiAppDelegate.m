@@ -10,6 +10,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+@interface BluewokiAppDelegate (Private)
+
+- (void)closeConnectionWithMessage:(NSString *)message;
+
+@end
+
+
 @implementation BluewokiAppDelegate
 
 @synthesize chatSession;
@@ -38,12 +45,12 @@
     AudioSessionSetActive(true);
     
     [GKVoiceChatService defaultVoiceChatService].client = self;
-    
     statusLabel.text = @"ready";
 }
 
 - (void)dealloc 
 {
+    pickerController.delegate = nil;
     [pickerController release];
     [window release];
     [super dealloc];
@@ -88,7 +95,10 @@
     [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
                                                                             error:nil];
     
-    statusLabel.text = [NSString stringWithFormat:@"connected to\n%@", peerID];
+    statusLabel.text = [NSString stringWithFormat:@"connected with\n%@", [chatSession displayNameForPeer:peerID]];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+    connectButton.enabled = NO;
 }
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker
@@ -106,7 +116,6 @@
         switch (state) 
         {
             case GKPeerStateAvailable:
-                statusLabel.text = [NSString stringWithFormat:@"peer available:\n%@", peerID];
                 break;
                 
             case GKPeerStateUnavailable:
@@ -116,10 +125,11 @@
                 break;
 
             case GKPeerStateDisconnected:
-                statusLabel.text = @"peer disconnected";
+                [self closeConnectionWithMessage:@"peer disconnected"];
                 break;
 
             case GKPeerStateConnecting:
+                statusLabel.text = @"connecting";
                 break;
                 
             default:
@@ -132,7 +142,7 @@
 {
     if (session == chatSession)
     {
-        statusLabel.text = @"error";
+        [self closeConnectionWithMessage:@"error"];
     }
 }
 
@@ -146,14 +156,36 @@
 
 - (void)voiceChatService:(GKVoiceChatService *)voiceChatService sendData:(NSData *)data toParticipantID:(NSString *)participantID
 {
-    statusLabel.text = @"sending...";
-    [chatSession sendData:data toPeers:[NSArray arrayWithObject:participantID] withDataMode:GKSendDataReliable error: nil];
+    [chatSession sendData:data 
+                  toPeers:[NSArray arrayWithObject:participantID] 
+             withDataMode:GKSendDataReliable error: nil];
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context;
 {
-    statusLabel.text = @"receiving...";
-    [[GKVoiceChatService defaultVoiceChatService] receivedData:data fromParticipantID:peer];
+    [[GKVoiceChatService defaultVoiceChatService] receivedData:data 
+                                             fromParticipantID:peer];
+}
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)closeConnectionWithMessage:(NSString *)message
+{
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [UIDevice currentDevice].proximityMonitoringEnabled = NO;
+    statusLabel.text = message;
+    chatSession.delegate = nil;
+    self.chatSession = nil;
+    connectButton.enabled = YES;
+    [self performSelector:@selector(resetInterface) 
+               withObject:nil 
+               afterDelay:3];
+}
+
+- (void)resetInterface
+{
+    statusLabel.text = @"ready";
 }
 
 @end
