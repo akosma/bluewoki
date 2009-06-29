@@ -46,6 +46,7 @@
     
     [GKVoiceChatService defaultVoiceChatService].client = self;
     statusLabel.text = NSLocalizedString(@"ready", @"Used when the application starts and after the peer disconnects");
+    [connectButton setTitle:NSLocalizedString(@"connect", @"Shown on the connect button") forState:UIControlStateNormal];
 }
 
 - (void)dealloc 
