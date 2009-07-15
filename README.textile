@@ -1,0 +1,24 @@
+h1. bluewoki
+
+bluewoki is a simple walkie-talkie over Bluetooth application for devices running iPhone OS 3.0. It allows iPhone and iPod Touch devices (2nd generation) to connect to each other via Bluetooth and to exchange vocal messages. The devices must be close enough to each other so that Bluetooth connectivity is available.
+
+The application is "available at the App Store":http://itunes.com/apps/bluewoki.
+
+The source code is released under a liberal BSD license.
+
+h2. FAQ
+
+h3. Why charging for open source software?
+
+This question has already been raised in the case of "Tux Raider World Challenge":http://barlow-server.com/tuxriderworldchallenge/ and I will simply quote one of its FAQ entries:
+
+bq. Tux Rider is an Open Source software that complies to the GPLv2. Hence the source code is made available to all clients. Yet, the GPLv2 doesn't says that the author cannot be rewarded for his work. In fact, there is a widely spread misunderstanding that says that Open Source equals free of charge.
+
+bq. The free software foundation clearly explains:
+bq. “Free software is a matter of liberty, not price. To understand the concept, you should think of free as in free speech, not as in free beer.”
+
+bq. — The Free Software Definition (GNU - FSF)
+
+h3. Any other comment?
+
+Read this "amazing article by Zed Shaw":http://zedshaw.com/blog/2009-07-13.html. I completely agree with his views on licensing.
