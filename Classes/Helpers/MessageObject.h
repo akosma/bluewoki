@@ -15,7 +15,7 @@ typedef enum {
     MessageKindEndVoiceCall = 2
 } MessageKind;
 
-@interface Message : NSObject <NSCoding>
+@interface MessageObject : NSObject <NSCoding>
 
 @property (nonatomic) MessageKind kind;
 @property (nonatomic, retain) NSData *body;

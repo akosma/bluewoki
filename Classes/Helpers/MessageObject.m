@@ -6,10 +6,10 @@
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "Message.h"
+#import "MessageObject.h"
 
 
-@implementation Message
+@implementation MessageObject
 
 @synthesize kind = _kind;
 @synthesize body = _body;
