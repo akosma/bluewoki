@@ -96,7 +96,7 @@
         
         // Search for peers only in the local bluetooth network
         _pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby 
-        | GKPeerPickerConnectionTypeOnline;
+                                                | GKPeerPickerConnectionTypeOnline;
     }
     return [[_pickerController retain] autorelease];
 }
