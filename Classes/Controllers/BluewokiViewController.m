@@ -11,15 +11,22 @@
 #import "PeersBrowserController.h"
 #import "PeerProxy.h"
 
+typedef enum {
+    BluewokiViewControllerConnectionTypeNone = 0,
+    BluewokiViewControllerConnectionTypeBluetooth = 1,
+    BluewokiViewControllerConnectionTypeWifi = 2
+} BluewokiViewControllerConnectionType;
+
+
 @interface BluewokiViewController ()
 
 @property (nonatomic, retain) GKSession *chatSession;
-@property (nonatomic, retain) GKPeerPickerController *pickerController;
 @property (nonatomic, copy) NSString *otherPeerID;
 @property (nonatomic, getter = isConnected) BOOL connected;
 @property (nonatomic, retain) PeerService *service;
 @property (nonatomic, retain) UINavigationController *navController;
 @property (nonatomic, retain) PeerProxy *peerProxy;
+@property (nonatomic) BluewokiViewControllerConnectionType connectionType;
 
 - (void)closeConnectionWithMessage:(NSString *)message;
 - (void)disconnect;
@@ -34,17 +41,15 @@
 @synthesize chatSession = _chatSession;
 @synthesize statusLabel = _statusLabel;
 @synthesize connectButton = _connectButton;
-@synthesize pickerController = _pickerController;
 @synthesize connected = _connected;
 @synthesize otherPeerID = _otherPeerID;
 @synthesize service = _service;
 @synthesize navController = _navController;
 @synthesize peerProxy = _peerProxy;
+@synthesize connectionType = _connectionType;
 
 - (void)dealloc
 {
-    [_pickerController setDelegate:nil];
-    [_pickerController release];
     [_chatSession release];
     [_chatSession setDelegate:nil];
     [_otherPeerID release];
@@ -64,6 +69,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _connectionType = BluewokiViewControllerConnectionTypeNone;
 
     NSError *myErr;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -97,21 +103,6 @@
 
 #pragma mark - Overridden properties
 
-- (GKPeerPickerController *)pickerController
-{
-    if (_pickerController == nil)
-    {
-        // Create a "peer picker"
-        _pickerController = [[GKPeerPickerController alloc] init];
-        _pickerController.delegate = self;
-        
-        // Search for peers in the local bluetooth network and on wifi
-        _pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby 
-                                                | GKPeerPickerConnectionTypeOnline;
-    }
-    return [[_pickerController retain] autorelease];
-}
-
 - (PeerService *)service
 {
     if (_service == nil)
@@ -144,7 +135,16 @@
     else
     {
         self.chatSession = [self createSession];
-        [self.pickerController show];
+        
+        // Create a "peer picker"
+        GKPeerPickerController *pickerController = [[[GKPeerPickerController alloc] init] autorelease];
+        pickerController.delegate = self;
+        
+        // Search for peers in the local bluetooth network and on wifi
+        pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby 
+                                                | GKPeerPickerConnectionTypeOnline;
+
+        [pickerController show];
     }
 }
 
@@ -163,8 +163,8 @@
     {
         case GKPeerPickerConnectionTypeOnline:
         {
-            [self.pickerController dismiss];
-            self.pickerController = nil;
+            self.connectionType = BluewokiViewControllerConnectionTypeWifi;
+            [picker dismiss];
 
             [self.service startService];
             [self presentModalViewController:self.navController animated:YES];
@@ -173,6 +173,7 @@
             
         case GKPeerPickerConnectionTypeNearby:
         {
+            self.connectionType = BluewokiViewControllerConnectionTypeBluetooth;
             [self.service stopService];
             break;
         }
@@ -186,23 +187,9 @@
            sessionForConnectionType:(GKPeerPickerConnectionType)type
 {
     GKSession* session = nil;
-    switch (type) 
+    if (type == GKPeerPickerConnectionTypeNearby)
     {
-        case GKPeerPickerConnectionTypeNearby:
-        {
-            session = self.chatSession;
-            break;
-        }
-            
-        case GKPeerPickerConnectionTypeOnline:
-        {
-            break;
-        }
-            
-        default:
-        {
-            break;
-        }
+        session = self.chatSession;
     }
     return session;
 }
@@ -214,11 +201,9 @@
     self.chatSession = session;
     self.chatSession.delegate = self;
     
-    [self.pickerController dismiss];
-    self.pickerController = nil;
+    [picker dismiss];
     
     [self startChatWithPeerID:peerID];
-
 }
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker
@@ -231,7 +216,8 @@
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
 {
-    if (session == self.chatSession)
+    if (session == self.chatSession
+        && self.connectionType == BluewokiViewControllerConnectionTypeWifi)
     {
         [self.chatSession acceptConnectionFromPeer:peerID 
                                              error:nil];
@@ -255,7 +241,10 @@
                 
             case GKPeerStateConnected:
             {
-                [self startChatWithPeerID:peerID];
+                if (self.connectionType == BluewokiViewControllerConnectionTypeWifi)
+                {
+                    [self startChatWithPeerID:peerID];
+                }
                 break;
             }
                 
@@ -320,6 +309,18 @@ didStopWithParticipantID:(NSString *)participantID
     [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
 }
 
+-  (void)voiceChatService:(GKVoiceChatService *)voiceChatService 
+didStartWithParticipantID:(NSString *)participantID
+{
+    self.statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"connected with", @"Shows who we're talking to"), 
+                             [self.chatSession displayNameForPeer:self.otherPeerID]];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+    self.connected = YES;
+    [self.connectButton setTitle:NSLocalizedString(@"disconnect", @"Shown on the disconnect button") 
+                        forState:UIControlStateNormal];
+}
+
 #pragma mark - PeersBrowserControllerDelegate methods
 
 - (void)peersBrowserController:(PeersBrowserController *)controller didSelectPeer:(PeerProxy *)peer
@@ -372,8 +373,8 @@ didStopWithParticipantID:(NSString *)participantID
 
 - (void)disconnect
 {
+    self.connectionType = BluewokiViewControllerConnectionTypeNone;
     [self.service stopService];
-    self.service = nil;
 
     [[GKVoiceChatService defaultVoiceChatService] stopVoiceChatWithParticipantID:self.otherPeerID];
     [self.chatSession disconnectFromAllPeers];
@@ -381,6 +382,8 @@ didStopWithParticipantID:(NSString *)participantID
     self.chatSession = nil;
     self.connected = NO;
     self.otherPeerID = nil;
+    self.peerProxy.delegate = nil;
+    self.peerProxy = nil;
     [self.connectButton setTitle:NSLocalizedString(@"connect", @"Shown on the connect button") 
                         forState:UIControlStateNormal];
 }
@@ -400,18 +403,9 @@ didStopWithParticipantID:(NSString *)participantID
 
 - (void)startChatWithPeerID:(NSString *)peerID
 {
+    self.otherPeerID = peerID;
     [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
                                                                             error:nil];
-    
-    self.statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"connected with", @"Shows who we're talking to"), 
-                             [self.chatSession displayNameForPeer:peerID]];
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
-    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
-    self.connected = YES;
-    self.otherPeerID = peerID;
-    [self.connectButton setTitle:NSLocalizedString(@"disconnect", @"Shown on the disconnect button") 
-                        forState:UIControlStateNormal];
-    
 }
 
 @end
