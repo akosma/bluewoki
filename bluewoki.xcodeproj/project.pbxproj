@@ -248,6 +248,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = bluewoki_Prefix.pch;
 				INFOPLIST_FILE = "bluewoki-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = bluewoki;
 			};
 			name = Debug;
@@ -260,6 +261,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = bluewoki_Prefix.pch;
 				INFOPLIST_FILE = "bluewoki-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = bluewoki;
 			};
 			name = Release;
