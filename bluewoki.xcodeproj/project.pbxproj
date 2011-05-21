@@ -11,6 +11,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		3A5C41D013881BE2008FB231 /* BluewokiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C41CE13881BE2008FB231 /* BluewokiViewController.m */; };
+		3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */; };
 		3A5FBACC0FF8ADEC0060478C /* BluewokiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5FBACB0FF8ADEC0060478C /* BluewokiAppDelegate.m */; };
 		3A5FBAE80FF8AFF90060478C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAE70FF8AFF90060478C /* Entitlements.plist */; };
 		3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */; };
@@ -29,6 +31,9 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* bluewoki_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluewoki_Prefix.pch; sourceTree = "<group>"; };
+		3A5C41CD13881BE2008FB231 /* BluewokiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiViewController.h; sourceTree = "<group>"; };
+		3A5C41CE13881BE2008FB231 /* BluewokiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiViewController.m; sourceTree = "<group>"; };
+		3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluewokiViewController.xib; sourceTree = "<group>"; };
 		3A5FBACA0FF8ADEC0060478C /* BluewokiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiAppDelegate.h; sourceTree = "<group>"; };
 		3A5FBACB0FF8ADEC0060478C /* BluewokiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiAppDelegate.m; sourceTree = "<group>"; };
 		3A5FBAE70FF8AFF90060478C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -120,6 +125,8 @@
 			children = (
 				3A5FBACA0FF8ADEC0060478C /* BluewokiAppDelegate.h */,
 				3A5FBACB0FF8ADEC0060478C /* BluewokiAppDelegate.m */,
+				3A5C41CD13881BE2008FB231 /* BluewokiViewController.h */,
+				3A5C41CE13881BE2008FB231 /* BluewokiViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -137,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF6C9440FF8B7F000312D0A /* MainWindow.xib */,
+				3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -207,6 +215,7 @@
 				3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */,
 				3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */,
 				3AF6F7490FF8DEA50083EA15 /* Localizable.strings in Resources */,
+				3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +228,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				3A5FBACC0FF8ADEC0060478C /* BluewokiAppDelegate.m in Sources */,
+				3A5C41D013881BE2008FB231 /* BluewokiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
