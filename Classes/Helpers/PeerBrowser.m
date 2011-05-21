@@ -10,6 +10,8 @@
 #import "Protocol.h"
 #import "PeerProxy.h"
 
+NSString * const PeerBrowserDidChangeCountNotification = @"PeerBrowserDidChangeCountNotification";
+
 
 @implementation PeerBrowser
 
@@ -55,7 +57,8 @@
     [self.peerBrowser stop];
     self.peerBrowser = nil;
     [self.peerArray removeAllObjects];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PeerBrowserDidChangeCountNotification
+                                                        object:self];
 }
 
 - (PeerProxy *)peerAtIndex:(NSUInteger)index
@@ -76,7 +79,7 @@
             PeerProxy *peer = [PeerProxy proxyWithService:service];
             [self.peerArray addObject:peer];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" 
+            [[NSNotificationCenter defaultCenter] postNotificationName:PeerBrowserDidChangeCountNotification
                                                                 object:self];
         }
     }
@@ -102,7 +105,7 @@
             [self.peerArray removeObject:peerToRemove];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" 
+        [[NSNotificationCenter defaultCenter] postNotificationName:PeerBrowserDidChangeCountNotification 
                                                             object:self];
     }
 }

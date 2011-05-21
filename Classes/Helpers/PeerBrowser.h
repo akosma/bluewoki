@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const PeerBrowserDidChangeCountNotification;
+
 @class PeerProxy;
 
 @interface PeerBrowser : NSObject <NSNetServiceBrowserDelegate>

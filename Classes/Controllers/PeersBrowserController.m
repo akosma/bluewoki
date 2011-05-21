@@ -53,11 +53,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self.tableView
                                              selector:@selector(reloadData) 
-                                                 name:@"UPDATE_SCREEN"
+                                                 name:PeerBrowserDidChangeCountNotification
                                                object:nil];
-
-    self.browser = [[[PeerBrowser alloc] init] autorelease];
-    [self.browser startSearchingForPeers];
 
     self.cancelItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
                                                                      target:self
@@ -78,6 +75,20 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.browser = [[[PeerBrowser alloc] init] autorelease];
+    [self.browser startSearchingForPeers];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.browser stopSearchingForPeers];
+    self.browser = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -173,6 +173,7 @@
             
         case GKPeerPickerConnectionTypeNearby:
         {
+            [self.service stopService];
             break;
         }
             
@@ -211,8 +212,7 @@
                    toSession:(GKSession *)session 
 {
     self.chatSession = session;
-    session.delegate = self;
-    [session setDataReceiveHandler:self withContext:nil];
+    self.chatSession.delegate = self;
     
     [self.pickerController dismiss];
     self.pickerController = nil;
@@ -255,20 +255,21 @@
                 
             case GKPeerStateConnected:
             {
-                [self.chatSession setDataReceiveHandler:self
-                                            withContext:nil];
-                [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
-                                                                                        error:nil];
+                [self startChatWithPeerID:peerID];
                 break;
             }
                 
             case GKPeerStateDisconnected:
+            {
                 [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
                 break;
+            }
                 
             case GKPeerStateConnecting:
+            {
                 self.statusLabel.text = NSLocalizedString(@"connecting", @"Shown while the connection is negotiated");
                 break;
+            }
                 
             default:
                 break;
@@ -325,7 +326,7 @@ didStopWithParticipantID:(NSString *)participantID
 {
     self.peerProxy = peer;
     self.peerProxy.delegate = self;
-    [controller dismissModalViewControllerAnimated:YES];
+    [self.navController dismissModalViewControllerAnimated:YES];
     [self.peerProxy connect];
 }
 
@@ -358,12 +359,7 @@ didStopWithParticipantID:(NSString *)participantID
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [UIDevice currentDevice].proximityMonitoringEnabled = NO;
     self.statusLabel.text = message;
-    self.chatSession.delegate = nil;
-    self.chatSession = nil;
-    self.connected = NO;
-    self.otherPeerID = nil;
-    [self.connectButton setTitle:NSLocalizedString(@"connect", @"Shown on the connect button") 
-                        forState:UIControlStateNormal];
+    [self disconnect];
     [self performSelector:@selector(resetInterface) 
                withObject:nil 
                afterDelay:3];
@@ -376,11 +372,15 @@ didStopWithParticipantID:(NSString *)participantID
 
 - (void)disconnect
 {
+    [self.service stopService];
+    self.service = nil;
+
     [[GKVoiceChatService defaultVoiceChatService] stopVoiceChatWithParticipantID:self.otherPeerID];
     [self.chatSession disconnectFromAllPeers];
     self.chatSession.delegate = nil;
     self.chatSession = nil;
     self.connected = NO;
+    self.otherPeerID = nil;
     [self.connectButton setTitle:NSLocalizedString(@"connect", @"Shown on the connect button") 
                         forState:UIControlStateNormal];
 }
@@ -394,6 +394,7 @@ didStopWithParticipantID:(NSString *)participantID
                                                    sessionMode:GKSessionModePeer] autorelease];
     session.delegate = self;
     session.available = YES;
+    [session setDataReceiveHandler:self withContext:nil];
     return session;
 }
 
