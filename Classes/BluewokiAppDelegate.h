@@ -13,15 +13,10 @@
                                            GKPeerPickerControllerDelegate,
                                            GKSessionDelegate,
                                            GKVoiceChatClient> 
-{
-    IBOutlet UIWindow *window;
-    IBOutlet UILabel *statusLabel;
-    IBOutlet UIButton *connectButton;
-    GKPeerPickerController *pickerController;
-    GKSession *chatSession;
-}
 
-@property (nonatomic, retain) GKSession *chatSession;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UILabel *statusLabel;
+@property (nonatomic, retain) IBOutlet UIButton *connectButton;
 
 - (IBAction)showPeers:(id)sender;
 - (IBAction)openWebsite:(id)sender;
