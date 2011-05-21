@@ -20,7 +20,7 @@
 		3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF70FF8B0D50060478C /* Icon.png */; };
 		3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */; };
 		3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9E13881F8000804131 /* BluewokiViewController.m */; };
-		3A891AA713881F8000804131 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA113881F8000804131 /* Message.m */; };
+		3A891AA713881F8000804131 /* MessageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA113881F8000804131 /* MessageObject.m */; };
 		3A891AA813881F8000804131 /* MessageBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA313881F8000804131 /* MessageBroker.m */; };
 		3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AAC13881FAE00804131 /* AsyncSocket.m */; };
 		3A891AAF13881FDD00804131 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A891AAE13881FDD00804131 /* CFNetwork.framework */; };
@@ -28,6 +28,7 @@
 		3A891ABD138823D000804131 /* Protocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891ABC138823D000804131 /* Protocol.m */; };
 		3A891AC21388280000804131 /* PeerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC11388280000804131 /* PeerService.m */; };
 		3A891AC513882A2700804131 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC413882A2700804131 /* PeerBrowser.m */; };
+		3A891AC81388316F00804131 /* PeersBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC71388316F00804131 /* PeersBrowserController.m */; };
 		3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6C9440FF8B7F000312D0A /* MainWindow.xib */; };
 		3AF6F7490FF8DEA50083EA15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6F7450FF8DEA50083EA15 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -46,12 +47,13 @@
 		3A5FBAEF0FF8B0480060478C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3A5FBAF60FF8B0D50060478C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3A5FBAF70FF8B0D50060478C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		3A7C55F813883E7600D29272 /* PeersBrowserControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeersBrowserControllerDelegate.h; sourceTree = "<group>"; };
 		3A891A9A13881F8000804131 /* BluewokiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiAppDelegate.h; sourceTree = "<group>"; };
 		3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiAppDelegate.m; sourceTree = "<group>"; };
 		3A891A9D13881F8000804131 /* BluewokiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiViewController.h; sourceTree = "<group>"; };
 		3A891A9E13881F8000804131 /* BluewokiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiViewController.m; sourceTree = "<group>"; };
-		3A891AA013881F8000804131 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		3A891AA113881F8000804131 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		3A891AA013881F8000804131 /* MessageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageObject.h; sourceTree = "<group>"; };
+		3A891AA113881F8000804131 /* MessageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageObject.m; sourceTree = "<group>"; };
 		3A891AA213881F8000804131 /* MessageBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBroker.h; sourceTree = "<group>"; };
 		3A891AA313881F8000804131 /* MessageBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBroker.m; sourceTree = "<group>"; };
 		3A891AA413881F8000804131 /* MessageBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBrokerDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +69,8 @@
 		3A891AC11388280000804131 /* PeerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerService.m; sourceTree = "<group>"; };
 		3A891AC313882A2700804131 /* PeerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerBrowser.h; sourceTree = "<group>"; };
 		3A891AC413882A2700804131 /* PeerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerBrowser.m; sourceTree = "<group>"; };
+		3A891AC61388316F00804131 /* PeersBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeersBrowserController.h; sourceTree = "<group>"; };
+		3A891AC71388316F00804131 /* PeersBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeersBrowserController.m; sourceTree = "<group>"; };
 		3AF6C9440FF8B7F000312D0A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		3AF6F7460FF8DEA50083EA15 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3AF6F7470FF8DEA50083EA15 /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -181,6 +185,9 @@
 			children = (
 				3A891A9D13881F8000804131 /* BluewokiViewController.h */,
 				3A891A9E13881F8000804131 /* BluewokiViewController.m */,
+				3A891AC61388316F00804131 /* PeersBrowserController.h */,
+				3A891AC71388316F00804131 /* PeersBrowserController.m */,
+				3A7C55F813883E7600D29272 /* PeersBrowserControllerDelegate.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,8 +195,8 @@
 		3A891A9F13881F8000804131 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3A891AA013881F8000804131 /* Message.h */,
-				3A891AA113881F8000804131 /* Message.m */,
+				3A891AA013881F8000804131 /* MessageObject.h */,
+				3A891AA113881F8000804131 /* MessageObject.m */,
 				3A891AA213881F8000804131 /* MessageBroker.h */,
 				3A891AA313881F8000804131 /* MessageBroker.m */,
 				3A891AA413881F8000804131 /* MessageBrokerDelegate.h */,
@@ -312,13 +319,14 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */,
 				3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */,
-				3A891AA713881F8000804131 /* Message.m in Sources */,
+				3A891AA713881F8000804131 /* MessageObject.m in Sources */,
 				3A891AA813881F8000804131 /* MessageBroker.m in Sources */,
 				3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */,
 				3A891AB21388224000804131 /* PeerProxy.m in Sources */,
 				3A891ABD138823D000804131 /* Protocol.m in Sources */,
 				3A891AC21388280000804131 /* PeerService.m in Sources */,
 				3A891AC513882A2700804131 /* PeerBrowser.m in Sources */,
+				3A891AC81388316F00804131 /* PeersBrowserController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
