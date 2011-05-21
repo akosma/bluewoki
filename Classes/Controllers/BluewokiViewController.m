@@ -105,7 +105,7 @@
         _pickerController = [[GKPeerPickerController alloc] init];
         _pickerController.delegate = self;
         
-        // Search for peers only in the local bluetooth network
+        // Search for peers in the local bluetooth network and on wifi
         _pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby 
                                                 | GKPeerPickerConnectionTypeOnline;
     }
