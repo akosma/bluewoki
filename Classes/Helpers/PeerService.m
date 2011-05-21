@@ -10,7 +10,7 @@
 #import "Protocol.h"
 #import "MessageBroker.h"
 #import "AsyncSocket.h"
-#import "Message.h"
+#import "MessageObject.h"
 
 
 @interface PeerService ()

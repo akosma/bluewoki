@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class MessageBroker;
-@class Message;
+@class MessageObject;
 
 @protocol MessageBrokerDelegate <NSObject>
 
 @optional
 
-- (void)messageBroker:(MessageBroker *)server didSendMessage:(Message *)message;
+- (void)messageBroker:(MessageBroker *)server didSendMessage:(MessageObject *)message;
 
-- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(Message *)message;
+- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(MessageObject *)message;
 
 - (void)messageBrokerDidDisconnectUnexpectedly:(MessageBroker *)server;
 
