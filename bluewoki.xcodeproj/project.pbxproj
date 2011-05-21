@@ -24,6 +24,10 @@
 		3A891AA813881F8000804131 /* MessageBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA313881F8000804131 /* MessageBroker.m */; };
 		3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AAC13881FAE00804131 /* AsyncSocket.m */; };
 		3A891AAF13881FDD00804131 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A891AAE13881FDD00804131 /* CFNetwork.framework */; };
+		3A891AB21388224000804131 /* PeerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AB11388224000804131 /* PeerProxy.m */; };
+		3A891ABD138823D000804131 /* Protocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891ABC138823D000804131 /* Protocol.m */; };
+		3A891AC21388280000804131 /* PeerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC11388280000804131 /* PeerService.m */; };
+		3A891AC513882A2700804131 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC413882A2700804131 /* PeerBrowser.m */; };
 		3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6C9440FF8B7F000312D0A /* MainWindow.xib */; };
 		3AF6F7490FF8DEA50083EA15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6F7450FF8DEA50083EA15 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -54,6 +58,15 @@
 		3A891AAB13881FAE00804131 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		3A891AAC13881FAE00804131 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		3A891AAE13881FDD00804131 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3A891AB01388224000804131 /* PeerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerProxy.h; sourceTree = "<group>"; };
+		3A891AB11388224000804131 /* PeerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerProxy.m; sourceTree = "<group>"; };
+		3A891ABB138823CF00804131 /* Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocol.h; sourceTree = "<group>"; };
+		3A891ABC138823D000804131 /* Protocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Protocol.m; sourceTree = "<group>"; };
+		3A891ABF138825D900804131 /* PeerProxyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerProxyDelegate.h; sourceTree = "<group>"; };
+		3A891AC0138827FF00804131 /* PeerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerService.h; sourceTree = "<group>"; };
+		3A891AC11388280000804131 /* PeerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerService.m; sourceTree = "<group>"; };
+		3A891AC313882A2700804131 /* PeerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerBrowser.h; sourceTree = "<group>"; };
+		3A891AC413882A2700804131 /* PeerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerBrowser.m; sourceTree = "<group>"; };
 		3AF6C9440FF8B7F000312D0A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		3AF6F7460FF8DEA50083EA15 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3AF6F7470FF8DEA50083EA15 /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -180,6 +193,15 @@
 				3A891AA213881F8000804131 /* MessageBroker.h */,
 				3A891AA313881F8000804131 /* MessageBroker.m */,
 				3A891AA413881F8000804131 /* MessageBrokerDelegate.h */,
+				3A891AB01388224000804131 /* PeerProxy.h */,
+				3A891AB11388224000804131 /* PeerProxy.m */,
+				3A891ABF138825D900804131 /* PeerProxyDelegate.h */,
+				3A891ABB138823CF00804131 /* Protocol.h */,
+				3A891ABC138823D000804131 /* Protocol.m */,
+				3A891AC0138827FF00804131 /* PeerService.h */,
+				3A891AC11388280000804131 /* PeerService.m */,
+				3A891AC313882A2700804131 /* PeerBrowser.h */,
+				3A891AC413882A2700804131 /* PeerBrowser.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -293,6 +315,10 @@
 				3A891AA713881F8000804131 /* Message.m in Sources */,
 				3A891AA813881F8000804131 /* MessageBroker.m in Sources */,
 				3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */,
+				3A891AB21388224000804131 /* PeerProxy.m in Sources */,
+				3A891ABD138823D000804131 /* Protocol.m in Sources */,
+				3A891AC21388280000804131 /* PeerService.m in Sources */,
+				3A891AC513882A2700804131 /* PeerBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
