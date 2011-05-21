@@ -54,6 +54,8 @@
 {
     [self.peerBrowser stop];
     self.peerBrowser = nil;
+    [self.peerArray removeAllObjects];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:self];
 }
 
 - (PeerProxy *)peerAtIndex:(NSUInteger)index
@@ -69,11 +71,14 @@
 {
     if (!more)
     {
-        PeerProxy *peer = [PeerProxy proxyWithService:service];
-        [peer connect];
-        [self.peerArray addObject:peer];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:self];
+        if (![[service name] isEqualToString:[UIDevice currentDevice].name])
+        {
+            PeerProxy *peer = [PeerProxy proxyWithService:service];
+            [self.peerArray addObject:peer];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" 
+                                                                object:self];
+        }
     }
 }
 
@@ -97,7 +102,8 @@
             [self.peerArray removeObject:peerToRemove];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" 
+                                                            object:self];
     }
 }
 

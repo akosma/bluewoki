@@ -28,11 +28,13 @@
 @synthesize connectionSocket = _connectionSocket;
 @synthesize netService = _netService;
 @synthesize connected = _connected;
+@synthesize delegate = _delegate;
 
 - (void)dealloc
 {
     [self stopService];
     [_messageBroker release];
+    _delegate = nil;
 
     [super dealloc];
 }
@@ -62,7 +64,9 @@
 {
     self.listeningSocket = nil;
     self.connectionSocket = nil;
-    
+    self.messageBroker.delegate = nil;
+    self.messageBroker = nil;
+
     [self.netService stop];
     self.netService = nil;
 }
@@ -86,7 +90,6 @@
         self.connectionSocket = nil;
         self.messageBroker = nil;
         self.connected = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:nil];
     }
 }
 
@@ -95,8 +98,6 @@
     self.messageBroker = [[[MessageBroker alloc] initWithAsyncSocket:sock] autorelease];
     self.messageBroker.delegate = self;
     self.connected = YES;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:nil];
 }
 
 #pragma mark - Net Service Delegate Methods
@@ -104,6 +105,35 @@
 - (void)netService:(NSNetService *)aNetService didNotPublish:(NSDictionary *)dict 
 {
     NSLog(@"Failed to publish: %@", dict);
+}
+
+#pragma mark - MessageBroker Delegate Methods
+
+- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(MessageObject *)message 
+{
+    switch (message.kind) 
+    {
+        case MessageKindVoiceCallRequest:
+        {
+            NSString *peerID = [[[NSString alloc] initWithData:message.body 
+                                                      encoding:NSUTF8StringEncoding] autorelease];
+            if ([self.delegate respondsToSelector:@selector(peerService:didReceiveCallRequestFromPeer:)])
+            {
+                [self.delegate peerService:self didReceiveCallRequestFromPeer:peerID];
+            }
+            break;
+        }
+            
+        case MessageKindEndVoiceCall:
+        {
+//            [self.chatSession disconnectFromAllPeers];
+//            self.chatSession = nil;
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
 @end

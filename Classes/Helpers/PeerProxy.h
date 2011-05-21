@@ -8,29 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 #import "MessageBrokerDelegate.h"
 #import "PeerProxyDelegate.h"
 
 @interface PeerProxy : NSObject <NSNetServiceDelegate,
-                                 MessageBrokerDelegate,
-                                 GKPeerPickerControllerDelegate,
-                                 GKSessionDelegate,
-                                 GKVoiceChatClient>
+                                 MessageBrokerDelegate>
 
-@property (nonatomic, retain) NSNetService *netService;
 @property (nonatomic, retain) GKSession *chatSession;
 @property (nonatomic, getter = isConnected) BOOL connected;
-@property (nonatomic, retain) MessageBroker *messageBroker;
 @property (nonatomic, assign) id<PeerProxyDelegate> delegate;
 @property (nonatomic, readonly) NSString *serviceName;
 
 + (id)proxyWithService:(NSNetService *)service;
 - (id)initWithService:(NSNetService *)service;
 - (void)connect;
-- (void)startService;
-- (void)stopService;
 - (void)sendVoiceCallRequest;
 - (void)answerToCallFromPeerID:(NSString *)peerID;
 

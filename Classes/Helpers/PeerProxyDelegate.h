@@ -14,6 +14,7 @@
 
 @optional
 
-- (void)proxy:(PeerProxy *)proxy didReceiveCallRequestFromPeer:(NSString *)peerID;
+- (void)proxyDidConnect:(PeerProxy *)proxy;
+- (void)proxyDidDisconnect:(PeerProxy *)proxy;
 
 @end

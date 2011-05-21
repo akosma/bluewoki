@@ -10,22 +10,20 @@
 #import "Protocol.h"
 #import "MessageBroker.h"
 #import "AsyncSocket.h"
-#import "Message.h"
+#import "MessageObject.h"
 
 @interface PeerProxy ()
 
-@property (readwrite, retain) AsyncSocket *listeningSocket;
-@property (readwrite, retain) AsyncSocket *connectionSocket;
+@property (nonatomic, retain) NSNetService *netService;
 @property (nonatomic, retain) NSNetService *service;
 @property (nonatomic, retain) AsyncSocket *socket;
+@property (nonatomic, retain) MessageBroker *messageBroker;
 
 @end
 
 
 @implementation PeerProxy
 
-@synthesize listeningSocket = _listeningSocket;
-@synthesize connectionSocket = _connectionSocket;
 @synthesize netService = _netService;
 @synthesize messageBroker = _messageBroker;
 @synthesize service = _service;
@@ -48,37 +46,13 @@
         _connected = NO;
         
         _service = [service retain];
-        _service.delegate = self;
-        
-        NSError *myErr;
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&myErr];
-        [audioSession setActive:YES error:&myErr];
-        
-        // Routing default audio to external speaker
-        AudioSessionInitialize(NULL, NULL, NULL, NULL);
-        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-        AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute,
-                                sizeof(audioRouteOverride),
-                                &audioRouteOverride);
-        AudioSessionSetActive(true);
-        
-        [GKVoiceChatService defaultVoiceChatService].client = self;
-        
-        NSString *sessionId = @"workgroup";
-        NSString *name = [[UIDevice currentDevice] name];
-        self.chatSession = [[[GKSession alloc] initWithSessionID:sessionId 
-                                                     displayName:name 
-                                                     sessionMode:GKSessionModePeer] autorelease];
-        self.chatSession.delegate = self;
-        self.chatSession.available = YES;
+        [_service setDelegate:self];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [self stopService];
     [_chatSession release];
     [_messageBroker release];
     [_service release];
@@ -101,39 +75,9 @@
     [self.service resolveWithTimeout:0];    
 }
 
--(void)startService 
-{
-    NSError *error;
-    self.listeningSocket = [[[AsyncSocket alloc] init] autorelease];
-    [self.listeningSocket setDelegate:self];
-    if (![self.listeningSocket acceptOnPort:0 error:&error]) 
-    {
-        NSLog(@"Failed to create listening socket");
-        return;
-    }
-    
-    self.netService = [[[NSNetService alloc] initWithDomain:@"" 
-                                                       type:BLUEWOKI_PROTOCOL_NAME 
-                                                       name:[UIDevice currentDevice].name
-                                                       port:self.listeningSocket.localPort] autorelease];
-    self.netService.delegate = self;
-    [self.netService publish];
-}
-
--(void)stopService 
-{
-    self.listeningSocket = nil;
-    self.connectionSocket = nil;
-    self.messageBroker.delegate = nil;
-    self.messageBroker = nil;
-    
-    [self.netService stop];
-    self.netService = nil;
-}
-
 - (void)sendVoiceCallRequest
 {
-    Message *newMessage = [[[Message alloc] init] autorelease];
+    MessageObject *newMessage = [[[MessageObject alloc] init] autorelease];
     newMessage.kind = MessageKindVoiceCallRequest;
     newMessage.body = [self.chatSession.peerID dataUsingEncoding:NSUTF8StringEncoding];
     [self.messageBroker sendMessage:newMessage];
@@ -144,59 +88,79 @@
     [self.chatSession connectToPeer:peerID withTimeout:60];
 }
 
+#pragma mark - NSNetServiceDelegate methods
+
+- (void)netServiceDidResolveAddress:(NSNetService *)service 
+{
+    self.socket = [[[AsyncSocket alloc] init] autorelease];
+    [self.socket setDelegate:self];
+    [self.socket connectToAddress:service.addresses.lastObject error:nil];
+}
+
+- (void)netService:(NSNetService *)service didNotResolve:(NSDictionary *)errorDict 
+{
+    NSLog(@"Could not resolve: %@", errorDict);
+}
+
 #pragma mark - Socket Callbacks
 
-- (BOOL)onSocketWillConnect:(AsyncSocket *)sock 
+-(void)onSocketDidDisconnect:(AsyncSocket *)sock 
 {
-    if (self.connectionSocket == nil) 
+    self.socket = nil;
+    self.messageBroker = nil;
+    self.connected = NO;
+    
+    if ([self.delegate performSelector:@selector(proxyDidDisconnect:)])
     {
-        self.connectionSocket = sock;
+        [self.delegate proxyDidDisconnect:self];
+    }
+}
+
+-(BOOL)onSocketWillConnect:(AsyncSocket *)sock 
+{
+    if (self.messageBroker == nil) 
+    {
+        [sock retain];
         return YES;
     }
     return NO;
 }
 
--(void)onSocketDidDisconnect:(AsyncSocket *)sock 
-{
-    if (sock == self.connectionSocket)
-    {
-        self.connectionSocket = nil;
-        self.messageBroker = nil;
-        self.connected = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:nil];
-    }
-}
-
 -(void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port 
 {
     self.messageBroker = [[[MessageBroker alloc] initWithAsyncSocket:sock] autorelease];
+    [sock release];
     self.messageBroker.delegate = self;
     self.connected = YES;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_SCREEN" object:nil];
-}
-
-#pragma mark - Net Service Delegate Methods
-
-- (void)netService:(NSNetService *)aNetService didNotPublish:(NSDictionary *)dict 
-{
-    NSLog(@"Failed to publish: %@", dict);
+    if ([self.delegate performSelector:@selector(proxyDidConnect:)])
+    {
+        [self.delegate proxyDidConnect:self];
+    }
 }
 
 #pragma mark - MessageBroker Delegate Methods
 
-- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(Message *)message 
+- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(MessageObject *)message 
 {
     switch (message.kind) 
     {
         case MessageKindVoiceCallRequest:
         {
-            NSString *peerID = [[[NSString alloc] initWithData:message.body 
-                                                      encoding:NSUTF8StringEncoding] autorelease];
-            if ([self.delegate respondsToSelector:@selector(proxy:didReceiveCallRequestFromPeer:)])
-            {
-                [self.delegate proxy:self didReceiveCallRequestFromPeer:peerID];
-            }
+//            NSString *peerID = [[[NSString alloc] initWithData:message.body 
+//                                                      encoding:NSUTF8StringEncoding] autorelease];
+//            
+//            NSString *sessionId = @"bluewoki";
+//            NSString *name = [[UIDevice currentDevice] name];
+//            self.chatSession = [[[GKSession alloc] initWithSessionID:sessionId 
+//                                                         displayName:name 
+//                                                         sessionMode:GKSessionModePeer] autorelease];
+//            self.chatSession.available = YES;
+//
+//            if ([self.delegate respondsToSelector:@selector(proxy:didReceiveCallRequestFromPeer:)])
+//            {
+//                [self.delegate proxy:self didReceiveCallRequestFromPeer:peerID];
+//            }
             break;
         }
             
@@ -210,82 +174,6 @@
         default:
             break;
     }
-}
-
-#pragma mark - GKSessionDelegate methods
-
-- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
-{
-    if (session == self.chatSession)
-    {
-        [self.chatSession acceptConnectionFromPeer:peerID 
-                                             error:nil];
-        [self.chatSession connectToPeer:peerID withTimeout:60];
-    }
-}
-
-- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
-{
-    switch (state) 
-    {
-        case GKPeerStateAvailable:
-            break;
-            
-        case GKPeerStateUnavailable:
-            break;
-            
-        case GKPeerStateConnected:
-        {
-            [self.chatSession setDataReceiveHandler:self
-                                        withContext:nil];
-            [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
-                                                                                    error:nil];
-            
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-            {
-                [UIApplication sharedApplication].idleTimerDisabled = YES;
-                [UIDevice currentDevice].proximityMonitoringEnabled = YES;
-            }
-            break;
-        }
-            
-        case GKPeerStateDisconnected:
-            break;
-            
-        case GKPeerStateConnecting:
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error
-{
-    if (session == self.chatSession)
-    {
-    }
-}
-
-#pragma mark - GKVoiceChatClient methods
-
-- (NSString *)participantID
-{
-    return self.chatSession.peerID;
-}
-
-- (void)voiceChatService:(GKVoiceChatService *)voiceChatService sendData:(NSData *)data toParticipantID:(NSString *)participantID
-{
-    [self.chatSession sendData:data 
-                       toPeers:[NSArray arrayWithObject:participantID] 
-                  withDataMode:GKSendDataReliable 
-                         error: nil];
-}
-
-- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context;
-{
-    [[GKVoiceChatService defaultVoiceChatService] receivedData:data 
-                                             fromParticipantID:peer];
 }
 
 @end

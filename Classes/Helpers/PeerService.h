@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MessageBrokerDelegate.h"
+#import "PeerServiceDelegate.h"
 
 @class MessageBroker;
 
@@ -18,6 +19,7 @@
 @property (nonatomic, retain) NSNetService *netService;
 @property (nonatomic, retain) MessageBroker *messageBroker;
 @property (nonatomic, getter = isConnected) BOOL connected;
+@property (nonatomic, assign) id<PeerServiceDelegate> delegate;
 
 - (void)startService;
 - (void)stopService;

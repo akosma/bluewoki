@@ -7,7 +7,9 @@
 //
 
 #import "BluewokiViewController.h"
-
+#import "PeerService.h"
+#import "PeersBrowserController.h"
+#import "PeerProxy.h"
 
 @interface BluewokiViewController ()
 
@@ -15,9 +17,13 @@
 @property (nonatomic, retain) GKPeerPickerController *pickerController;
 @property (nonatomic, copy) NSString *otherPeerID;
 @property (nonatomic, getter = isConnected) BOOL connected;
+@property (nonatomic, retain) PeerService *service;
+@property (nonatomic, retain) UINavigationController *navController;
+@property (nonatomic, retain) PeerProxy *peerProxy;
 
 - (void)closeConnectionWithMessage:(NSString *)message;
 - (void)disconnect;
+- (void)startChatWithPeerID:(NSString *)peerID;
 - (GKSession *)createSession;
 
 @end
@@ -31,6 +37,9 @@
 @synthesize pickerController = _pickerController;
 @synthesize connected = _connected;
 @synthesize otherPeerID = _otherPeerID;
+@synthesize service = _service;
+@synthesize navController = _navController;
+@synthesize peerProxy = _peerProxy;
 
 - (void)dealloc
 {
@@ -39,6 +48,9 @@
     [_chatSession release];
     [_chatSession setDelegate:nil];
     [_otherPeerID release];
+    [_service release];
+    [_navController release];
+    [_peerProxy release];
     [super dealloc];
 }
 
@@ -71,7 +83,6 @@
     self.statusLabel.text = NSLocalizedString(@"ready", @"Used when the application starts and after the peer disconnects");
     [self.connectButton setTitle:NSLocalizedString(@"connect", @"Shown on the connect button") 
                         forState:UIControlStateNormal];
-
 }
 
 - (void)viewDidUnload
@@ -101,6 +112,27 @@
     return [[_pickerController retain] autorelease];
 }
 
+- (PeerService *)service
+{
+    if (_service == nil)
+    {
+        _service = [[PeerService alloc] init];
+        _service.delegate = self;
+    }
+    return _service;
+}
+
+- (UINavigationController *)navController
+{
+    if (_navController == nil)
+    {
+        PeersBrowserController *peersBrowserController = [[[PeersBrowserController alloc] init] autorelease];
+        peersBrowserController.delegate = self;
+        _navController = [[UINavigationController alloc] initWithRootViewController:peersBrowserController];
+    }
+    return _navController;
+}
+
 #pragma mark - IBAction methods
 
 - (IBAction)showPeers:(id)sender
@@ -111,6 +143,7 @@
     }
     else
     {
+        self.chatSession = [self createSession];
         [self.pickerController show];
     }
 }
@@ -132,7 +165,9 @@
         {
             [self.pickerController dismiss];
             self.pickerController = nil;
-            // Display your own user interface here.
+
+            [self.service startService];
+            [self presentModalViewController:self.navController animated:YES];
             break;
         }
             
@@ -154,7 +189,7 @@
     {
         case GKPeerPickerConnectionTypeNearby:
         {
-            session = [self createSession];
+            session = self.chatSession;
             break;
         }
             
@@ -182,17 +217,8 @@
     [self.pickerController dismiss];
     self.pickerController = nil;
     
-    [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
-                                                                            error:nil];
-    
-    self.statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"connected with", @"Shows who we're talking to"), 
-                             [self.chatSession displayNameForPeer:peerID]];
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
-    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
-    self.connected = YES;
-    self.otherPeerID = peerID;
-    [self.connectButton setTitle:NSLocalizedString(@"disconnect", @"Shown on the disconnect button") 
-                        forState:UIControlStateNormal];
+    [self startChatWithPeerID:peerID];
+
 }
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker
@@ -202,6 +228,16 @@
 }
 
 #pragma mark - GKSessionDelegate methods
+
+- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
+{
+    if (session == self.chatSession)
+    {
+        [self.chatSession acceptConnectionFromPeer:peerID 
+                                             error:nil];
+        [self.chatSession connectToPeer:peerID withTimeout:60];
+    }
+}
 
 - (void)session:(GKSession *)session 
            peer:(NSString *)peerID
@@ -218,7 +254,13 @@
                 break;
                 
             case GKPeerStateConnected:
+            {
+                [self.chatSession setDataReceiveHandler:self
+                                            withContext:nil];
+                [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
+                                                                                        error:nil];
                 break;
+            }
                 
             case GKPeerStateDisconnected:
                 [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
@@ -277,6 +319,38 @@ didStopWithParticipantID:(NSString *)participantID
     [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
 }
 
+#pragma mark - PeersBrowserControllerDelegate methods
+
+- (void)peersBrowserController:(PeersBrowserController *)controller didSelectPeer:(PeerProxy *)peer
+{
+    self.peerProxy = peer;
+    self.peerProxy.delegate = self;
+    [controller dismissModalViewControllerAnimated:YES];
+    [self.peerProxy connect];
+}
+
+#pragma mark - PeerProxyDelegate methods
+
+- (void)proxyDidConnect:(PeerProxy *)proxy
+{
+    if (proxy == self.peerProxy)
+    {
+        self.peerProxy.chatSession = self.chatSession;
+        [self.peerProxy sendVoiceCallRequest];
+    }
+}
+
+#pragma mark - PeerServiceDelegate methods
+
+- (void)peerService:(PeerService *)service didReceiveCallRequestFromPeer:(NSString *)peerID
+{
+    if (service == self.service)
+    {
+        [self.navController dismissModalViewControllerAnimated:YES];
+        [self.chatSession connectToPeer:peerID withTimeout:60];
+    }
+}
+
 #pragma mark - Private methods
 
 - (void)closeConnectionWithMessage:(NSString *)message
@@ -318,7 +392,25 @@ didStopWithParticipantID:(NSString *)participantID
     GKSession *session = [[[GKSession alloc] initWithSessionID:sessionId 
                                                    displayName:name 
                                                    sessionMode:GKSessionModePeer] autorelease];
+    session.delegate = self;
+    session.available = YES;
     return session;
+}
+
+- (void)startChatWithPeerID:(NSString *)peerID
+{
+    [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
+                                                                            error:nil];
+    
+    self.statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"connected with", @"Shows who we're talking to"), 
+                             [self.chatSession displayNameForPeer:peerID]];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+    self.connected = YES;
+    self.otherPeerID = peerID;
+    [self.connectButton setTitle:NSLocalizedString(@"disconnect", @"Shown on the disconnect button") 
+                        forState:UIControlStateNormal];
+    
 }
 
 @end
