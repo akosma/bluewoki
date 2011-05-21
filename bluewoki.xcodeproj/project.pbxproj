@@ -176,6 +176,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "bluewoki" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -263,62 +264,6 @@
 			};
 			name = Release;
 		};
-		3A5FBAE90FF8B00F0060478C /* Distribution AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
-			};
-			name = "Distribution AdHoc";
-		};
-		3A5FBAEA0FF8B00F0060478C /* Distribution AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Resources/Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Adrian Kosmaczewski";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = bluewoki_Prefix.pch;
-				INFOPLIST_FILE = "bluewoki-Info.plist";
-				PRODUCT_NAME = bluewoki;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "429F1EFD-9759-4036-A7B4-5EC3B528FEA1";
-			};
-			name = "Distribution AdHoc";
-		};
-		3AF6F7700FF8E0720083EA15 /* Distribution AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
-			};
-			name = "Distribution AppStore";
-		};
-		3AF6F7710FF8E0720083EA15 /* Distribution AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Resources/Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Adrian Kosmaczewski";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = bluewoki_Prefix.pch;
-				INFOPLIST_FILE = "bluewoki-Info.plist";
-				PRODUCT_NAME = bluewoki;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "01DDA876-C541-41E3-8F3E-EB3E7913E151";
-			};
-			name = "Distribution AppStore";
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -328,7 +273,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -341,7 +286,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -353,8 +298,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				3A5FBAEA0FF8B00F0060478C /* Distribution AdHoc */,
-				3AF6F7710FF8E0720083EA15 /* Distribution AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -364,8 +307,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				3A5FBAE90FF8B00F0060478C /* Distribution AdHoc */,
-				3AF6F7700FF8E0720083EA15 /* Distribution AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
