@@ -10,13 +10,13 @@
 #import "MessageBrokerDelegate.h"
 
 @class AsyncSocket;
-@class Message;
+@class MessageObject;
 
 @interface MessageBroker : NSObject 
 
 @property (nonatomic, assign) id<MessageBrokerDelegate> delegate;
 
 - (id)initWithAsyncSocket:(AsyncSocket *)socket;
-- (void)sendMessage:(Message *)newMessage;
+- (void)sendMessage:(MessageObject *)newMessage;
 
 @end

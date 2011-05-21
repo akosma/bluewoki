@@ -8,7 +8,7 @@
 
 #import "MessageBroker.h"
 #import "AsyncSocket.h"
-#import "Message.h"
+#import "MessageObject.h"
 
 static const unsigned int MESSAGE_HEADER_SIZE = sizeof(UInt64);
 static const float SOCKET_TIMEOUT = -1.0;
@@ -66,7 +66,7 @@ static const float SOCKET_TIMEOUT = -1.0;
 
 #pragma mark - Public methods
 
--(void)sendMessage:(Message *)message 
+-(void)sendMessage:(MessageObject *)message 
 {
     [self.messageQueue addObject:message];
     NSData *messageData = [NSKeyedArchiver archivedDataWithRootObject:message];
@@ -124,7 +124,7 @@ static const float SOCKET_TIMEOUT = -1.0;
             // Message body. Pass to delegate
             if ([self.delegate respondsToSelector:@selector(messageBroker:didReceiveMessage:)] ) 
             {
-                Message *message = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                MessageObject *message = [NSKeyedUnarchiver unarchiveObjectWithData:data];
                 [self.delegate messageBroker:self didReceiveMessage:message];
             }
             
@@ -151,7 +151,7 @@ static const float SOCKET_TIMEOUT = -1.0;
     if (tag == 1) 
     {
         // If the message is now complete, remove from queue, and tell the delegate
-        Message *message = [[[self.messageQueue objectAtIndex:0] retain] autorelease];
+        MessageObject *message = [[[self.messageQueue objectAtIndex:0] retain] autorelease];
         [self.messageQueue removeObjectAtIndex:0];
         if ([self.delegate respondsToSelector:@selector(messageBroker:didSendMessage:)])
         {
