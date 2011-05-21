@@ -57,6 +57,7 @@
     [_pickerController setDelegate:nil];
     [_pickerController release];
     [_chatSession release];
+    [_chatSession setDelegate:nil];
     [_window release];
     [super dealloc];
 }
@@ -147,7 +148,7 @@
     self.chatSession = session;
     session.delegate = self;
     [session setDataReceiveHandler:self withContext:nil];
-    picker.delegate = nil;
+
     [picker dismiss];
     
     [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
