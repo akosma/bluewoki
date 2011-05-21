@@ -31,14 +31,6 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
     [self.window makeKeyAndVisible];
-
-    // Create a "peer picker"
-    self.pickerController = [[[GKPeerPickerController alloc] init] autorelease];
-    self.pickerController.delegate = self;
-    
-    // Search for peers only in the local bluetooth network
-    self.pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby 
-                                                | GKPeerPickerConnectionTypeOnline;
     
     NSError *myErr;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -62,11 +54,28 @@
 
 - (void)dealloc 
 {
-    _pickerController.delegate = nil;
+    [_pickerController setDelegate:nil];
     [_pickerController release];
     [_chatSession release];
     [_window release];
     [super dealloc];
+}
+
+#pragma mark - Overridden properties
+
+- (GKPeerPickerController *)pickerController
+{
+    if (_pickerController == nil)
+    {
+        // Create a "peer picker"
+        _pickerController = [[GKPeerPickerController alloc] init];
+        _pickerController.delegate = self;
+        
+        // Search for peers only in the local bluetooth network
+        _pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby 
+                                                | GKPeerPickerConnectionTypeOnline;
+    }
+    return [[_pickerController retain] autorelease];
 }
 
 #pragma mark - IBAction methods
@@ -87,7 +96,19 @@
 - (void)peerPickerController:(GKPeerPickerController *)picker 
      didSelectConnectionType:(GKPeerPickerConnectionType)type
 {
-    
+    switch (type) 
+    {
+        case GKPeerPickerConnectionTypeOnline:
+        {
+            [self.pickerController dismiss];
+            self.pickerController = nil;
+            // Display your own user interface here.
+            break;
+        }
+
+        default:
+            break;
+    }
 }
 
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker 
@@ -100,10 +121,9 @@
         {
             NSString *sessionId = @"bluewoki";
             NSString *name = [[UIDevice currentDevice] name];
-            session = [[GKSession alloc] initWithSessionID:sessionId 
-                                               displayName:name 
-                                               sessionMode:GKSessionModePeer];
-            [session autorelease];
+            session = [[[GKSession alloc] initWithSessionID:sessionId 
+                                                displayName:name 
+                                                sessionMode:GKSessionModePeer] autorelease];
             break;
         }
             
@@ -142,7 +162,6 @@
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker
 {
-    [picker dismiss];
 }
 
 #pragma mark - GKSessionDelegate methods
