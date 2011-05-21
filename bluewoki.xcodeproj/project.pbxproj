@@ -11,15 +11,19 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		3A5C41D013881BE2008FB231 /* BluewokiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C41CE13881BE2008FB231 /* BluewokiViewController.m */; };
 		3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */; };
-		3A5FBACC0FF8ADEC0060478C /* BluewokiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5FBACB0FF8ADEC0060478C /* BluewokiAppDelegate.m */; };
 		3A5FBAE80FF8AFF90060478C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAE70FF8AFF90060478C /* Entitlements.plist */; };
 		3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */; };
 		3A5FBAEE0FF8B0400060478C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAED0FF8B0400060478C /* AVFoundation.framework */; };
 		3A5FBAF00FF8B0480060478C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEF0FF8B0480060478C /* GameKit.framework */; };
 		3A5FBAF80FF8B0D50060478C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF60FF8B0D50060478C /* Default.png */; };
 		3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF70FF8B0D50060478C /* Icon.png */; };
+		3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */; };
+		3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9E13881F8000804131 /* BluewokiViewController.m */; };
+		3A891AA713881F8000804131 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA113881F8000804131 /* Message.m */; };
+		3A891AA813881F8000804131 /* MessageBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA313881F8000804131 /* MessageBroker.m */; };
+		3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AAC13881FAE00804131 /* AsyncSocket.m */; };
+		3A891AAF13881FDD00804131 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A891AAE13881FDD00804131 /* CFNetwork.framework */; };
 		3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6C9440FF8B7F000312D0A /* MainWindow.xib */; };
 		3AF6F7490FF8DEA50083EA15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6F7450FF8DEA50083EA15 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -31,17 +35,25 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* bluewoki_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluewoki_Prefix.pch; sourceTree = "<group>"; };
-		3A5C41CD13881BE2008FB231 /* BluewokiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiViewController.h; sourceTree = "<group>"; };
-		3A5C41CE13881BE2008FB231 /* BluewokiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiViewController.m; sourceTree = "<group>"; };
 		3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluewokiViewController.xib; sourceTree = "<group>"; };
-		3A5FBACA0FF8ADEC0060478C /* BluewokiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiAppDelegate.h; sourceTree = "<group>"; };
-		3A5FBACB0FF8ADEC0060478C /* BluewokiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiAppDelegate.m; sourceTree = "<group>"; };
 		3A5FBAE70FF8AFF90060478C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A5FBAED0FF8B0400060478C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3A5FBAEF0FF8B0480060478C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3A5FBAF60FF8B0D50060478C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3A5FBAF70FF8B0D50060478C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		3A891A9A13881F8000804131 /* BluewokiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiAppDelegate.h; sourceTree = "<group>"; };
+		3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiAppDelegate.m; sourceTree = "<group>"; };
+		3A891A9D13881F8000804131 /* BluewokiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiViewController.h; sourceTree = "<group>"; };
+		3A891A9E13881F8000804131 /* BluewokiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiViewController.m; sourceTree = "<group>"; };
+		3A891AA013881F8000804131 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		3A891AA113881F8000804131 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		3A891AA213881F8000804131 /* MessageBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBroker.h; sourceTree = "<group>"; };
+		3A891AA313881F8000804131 /* MessageBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBroker.m; sourceTree = "<group>"; };
+		3A891AA413881F8000804131 /* MessageBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBrokerDelegate.h; sourceTree = "<group>"; };
+		3A891AAB13881FAE00804131 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		3A891AAC13881FAE00804131 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		3A891AAE13881FDD00804131 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3AF6C9440FF8B7F000312D0A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		3AF6F7460FF8DEA50083EA15 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3AF6F7470FF8DEA50083EA15 /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A891AAF13881FDD00804131 /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -77,7 +90,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3A5FBAC90FF8ADEC0060478C /* Classes */,
+				3A891AA913881FAE00804131 /* Externals */,
+				3A891A9813881F8000804131 /* Classes */,
 				3A22AD4C0FF8ACC100E867BE /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -98,6 +112,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A891AAE13881FDD00804131 /* CFNetwork.framework */,
 				3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */,
 				3A5FBAED0FF8B0400060478C /* AVFoundation.framework */,
 				3A5FBAEF0FF8B0480060478C /* GameKit.framework */,
@@ -120,17 +135,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		3A5FBAC90FF8ADEC0060478C /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				3A5FBACA0FF8ADEC0060478C /* BluewokiAppDelegate.h */,
-				3A5FBACB0FF8ADEC0060478C /* BluewokiAppDelegate.m */,
-				3A5C41CD13881BE2008FB231 /* BluewokiViewController.h */,
-				3A5C41CE13881BE2008FB231 /* BluewokiViewController.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		3A5FBAF50FF8B0D50060478C /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +142,63 @@
 				3A5FBAF70FF8B0D50060478C /* Icon.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		3A891A9813881F8000804131 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3A891A9913881F8000804131 /* AppDelegate */,
+				3A891A9C13881F8000804131 /* Controllers */,
+				3A891A9F13881F8000804131 /* Helpers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3A891A9913881F8000804131 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				3A891A9A13881F8000804131 /* BluewokiAppDelegate.h */,
+				3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		3A891A9C13881F8000804131 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A891A9D13881F8000804131 /* BluewokiViewController.h */,
+				3A891A9E13881F8000804131 /* BluewokiViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3A891A9F13881F8000804131 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A891AA013881F8000804131 /* Message.h */,
+				3A891AA113881F8000804131 /* Message.m */,
+				3A891AA213881F8000804131 /* MessageBroker.h */,
+				3A891AA313881F8000804131 /* MessageBroker.m */,
+				3A891AA413881F8000804131 /* MessageBrokerDelegate.h */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3A891AA913881FAE00804131 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				3A891AAA13881FAE00804131 /* AsyncSocket */,
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		3A891AAA13881FAE00804131 /* AsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				3A891AAB13881FAE00804131 /* AsyncSocket.h */,
+				3A891AAC13881FAE00804131 /* AsyncSocket.m */,
+			);
+			path = AsyncSocket;
 			sourceTree = "<group>";
 		};
 		3AF6C9430FF8B7F000312D0A /* NIBs */ = {
@@ -227,8 +288,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				3A5FBACC0FF8ADEC0060478C /* BluewokiAppDelegate.m in Sources */,
-				3A5C41D013881BE2008FB231 /* BluewokiViewController.m in Sources */,
+				3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */,
+				3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */,
+				3A891AA713881F8000804131 /* Message.m in Sources */,
+				3A891AA813881F8000804131 /* MessageBroker.m in Sources */,
+				3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
