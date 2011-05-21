@@ -14,6 +14,7 @@
 @property (nonatomic, retain) GKSession *chatSession;
 @property (nonatomic, retain) GKPeerPickerController *pickerController;
 @property (nonatomic, copy) NSString *otherPeerID;
+@property (nonatomic, getter = isConnected) BOOL connected;
 
 - (void)closeConnectionWithMessage:(NSString *)message;
 - (void)disconnect;

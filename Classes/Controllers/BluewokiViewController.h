@@ -17,7 +17,6 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *statusLabel;
 @property (nonatomic, retain) IBOutlet UIButton *connectButton;
-@property (nonatomic, getter = isConnected) BOOL connected;
 
 - (IBAction)showPeers:(id)sender;
 - (IBAction)openWebsite:(id)sender;
