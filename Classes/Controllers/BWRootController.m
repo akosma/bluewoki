@@ -175,11 +175,13 @@
 
 - (void)connectionDidReceiveCall:(BWConnection *)connection
 {
+    NSString *titleTemplate = NSLocalizedString(@"call title", @"Title of the incoming call dialog box");
     NSString *messageTemplate = NSLocalizedString(@"message received", @"Shown when a call is received (wifi only)");
     NSString *message = [NSString stringWithFormat:messageTemplate, self.connection.otherPeerName];
+    NSString *titleText = [NSString stringWithFormat:titleTemplate, self.connection.otherPeerName];
     NSString *yes = NSLocalizedString(@"yes", @"The word 'yes'");
     NSString *no = NSLocalizedString(@"no", @"The word 'no'");
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil 
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:titleText 
                                                      message:message
                                                     delegate:self
                                            cancelButtonTitle:no
