@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) BWConnection *connection;
 @property (nonatomic, retain) UINavigationController *navController;
+@property (nonatomic, retain) BWBrowserController *peersBrowserController;
 
 - (void)closeConnectionWithMessage:(NSString *)message;
 
@@ -27,11 +28,13 @@
 @synthesize connectButton = _connectButton;
 @synthesize navController = _navController;
 @synthesize connection = _connection;
+@synthesize peersBrowserController = _peersBrowserController;
 
 - (void)dealloc
 {
     [_connection release];
     [_navController release];
+    [_peersBrowserController release];
     [super dealloc];
 }
 
@@ -82,6 +85,7 @@
     if (self.connection.isConnected)
     {
         [self closeConnectionWithMessage:NSLocalizedString(@"disconnected", @"Shown when the other user disconnects")];
+        self.navController = nil;
         self.connection = nil;
     }
     else
@@ -115,10 +119,10 @@
 
             if (self.navController == nil)
             {
-                BWBrowserController *peersBrowserController = [[[BWBrowserController alloc] init] autorelease];
-                peersBrowserController.delegate = self.connection;
-                self.navController = [[[UINavigationController alloc] initWithRootViewController:peersBrowserController] autorelease];
+                self.peersBrowserController = [[[BWBrowserController alloc] init] autorelease];
+                self.navController = [[[UINavigationController alloc] initWithRootViewController:self.peersBrowserController] autorelease];
             }
+            self.peersBrowserController.delegate = self.connection;
 
             [self presentModalViewController:self.navController animated:YES];
             break;
@@ -148,6 +152,7 @@
 {
     if (self.navController != nil)
     {
+        self.peersBrowserController.delegate = nil;
         [self.navController dismissModalViewControllerAnimated:YES];
     }
     self.statusLabel.text = NSLocalizedString(@"connecting", @"Shown while the connection is negotiated");
@@ -166,6 +171,34 @@
 - (void)connectionDidDisconnect:(BWConnection *)connection
 {
     [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
+}
+
+- (void)connectionDidReceiveCall:(BWConnection *)connection
+{
+    NSString *messageTemplate = NSLocalizedString(@"message received", @"Shown when a call is received (wifi only)");
+    NSString *message = [NSString stringWithFormat:messageTemplate, self.connection.otherPeerName];
+    NSString *yes = NSLocalizedString(@"yes", @"The word 'yes'");
+    NSString *no = NSLocalizedString(@"no", @"The word 'no'");
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil 
+                                                     message:message
+                                                    delegate:self
+                                           cancelButtonTitle:no
+                                           otherButtonTitles:yes, nil] autorelease];
+    [alert show];
+}
+
+#pragma mark - UIAlertView methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self.connection answerIncomingCall];
+    }
+    else
+    {
+        [self closeConnectionWithMessage:NSLocalizedString(@"disconnected", @"Shown when the other user disconnects")];
+    }
 }
 
 #pragma mark - Private methods

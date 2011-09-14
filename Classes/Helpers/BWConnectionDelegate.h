@@ -19,5 +19,6 @@
 - (void)connectionIsConnecting:(BWConnection *)connection;
 - (void)connectionDidConnect:(BWConnection *)connection;
 - (void)connectionDidDisconnect:(BWConnection *)connection;
+- (void)connectionDidReceiveCall:(BWConnection *)connection;
 
 @end

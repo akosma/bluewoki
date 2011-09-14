@@ -45,6 +45,11 @@
     // Overridden by subclasses
 }
 
+- (void)answerIncomingCall
+{
+    // Overridden by subclasses
+}
+
 - (GKSession *)createChatSession
 {
     NSString *sessionId = @"bluewoki";

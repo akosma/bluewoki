@@ -13,7 +13,8 @@
 #import "BWConnectionDelegate.h"
 
 @interface BWRootController : UIViewController <BWConnectionDelegate,
-                                                GKPeerPickerControllerDelegate>
+                                                GKPeerPickerControllerDelegate,
+                                                UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UILabel *statusLabel;
 @property (nonatomic, retain) IBOutlet UIButton *connectButton;

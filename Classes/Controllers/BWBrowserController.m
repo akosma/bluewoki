@@ -70,6 +70,7 @@
 - (void)cancel:(id)sender
 {
     [self.browser stopSearchingForPeers];
+    self.delegate = nil;
     [self dismissModalViewControllerAnimated:YES];
 }
 

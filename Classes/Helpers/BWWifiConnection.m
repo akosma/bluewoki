@@ -63,6 +63,12 @@
     [self.service stopService];
 }
 
+- (void)answerIncomingCall
+{
+    [self.chatSession connectToPeer:self.remotePeerID
+                        withTimeout:60];
+}
+
 #pragma mark - GKSessionDelegate methods
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
@@ -92,8 +98,10 @@
             case GKPeerStateConnected:
             {
                 self.connected = YES;
+                
+                // The PeerID changes during the process... we have to get it again here
+                // otherwise the display of the remote device name is wrong!
                 self.remotePeerID = peerID;
-
                 [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
                                                                                         error:nil];
 
@@ -106,6 +114,11 @@
                 
             case GKPeerStateDisconnected:
             {
+                self.connected = NO;
+                if ([self.delegate respondsToSelector:@selector(connectionDidDisconnect:)])
+                {
+                    [self.delegate connectionDidDisconnect:self];
+                }
                 break;
             }
                 
@@ -145,8 +158,12 @@ connectionWithPeerFailed:(NSString *)peerID
         {
             [self.delegate connectionIsConnecting:self];
         }
-        [self.chatSession connectToPeer:peerID
-                            withTimeout:60];
+        
+        self.remotePeerID = peerID;
+        if ([self.delegate respondsToSelector:@selector(connectionDidReceiveCall:)])
+        {
+            [self.delegate connectionDidReceiveCall:self];
+        }
     }
 }
 

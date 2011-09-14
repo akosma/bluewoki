@@ -21,7 +21,6 @@
 
 - (void)dealloc
 {
-    _pickerController.delegate = nil;
     [_pickerController release];
     [super dealloc];
 }
@@ -66,6 +65,7 @@
         
         self.pickerController.delegate = nil;
         [self.pickerController dismiss];
+        self.pickerController = nil;
         
         [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:self.remotePeerID 
                                                                                 error:nil];
@@ -89,7 +89,6 @@
     if (picker == self.pickerController)
     {
         self.connected = NO;
-        [self.pickerController dismiss];
     }
 }
 
