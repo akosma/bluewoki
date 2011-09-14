@@ -12,12 +12,12 @@
 #import "BWBrowserControllerDelegate.h"
 
 @interface BWConnection : NSObject <GKPeerPickerControllerDelegate,
-                                  GKSessionDelegate,
-                                  GKVoiceChatClient,
-                                  BWBrowserControllerDelegate>
+                                    GKSessionDelegate,
+                                    GKVoiceChatClient,
+                                    BWBrowserControllerDelegate>
 
 @property (nonatomic, assign) id<BWConnectionDelegate> delegate;
-@property (nonatomic, copy) NSString *otherPeerID;
+@property (nonatomic, copy) NSString *remotePeerID;
 @property (nonatomic, getter = isConnected) BOOL connected;
 @property (nonatomic, readonly) NSString *otherPeerName;
 @property (nonatomic, retain) GKSession *chatSession;
@@ -26,5 +26,6 @@
 
 - (void)connect;
 - (void)disconnect;
+- (GKSession *)createChatSession;
 
 @end

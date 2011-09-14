@@ -29,7 +29,6 @@
 @synthesize service = _service;
 @synthesize connected = _connected;
 @synthesize socket = _socket;
-@synthesize chatSession = _chatSession;
 @synthesize delegate = _delegate;
 @dynamic serviceName;
 
@@ -53,7 +52,6 @@
 
 - (void)dealloc
 {
-    [_chatSession release];
     [_messageBroker release];
     [_service release];
     [_socket release];
@@ -75,17 +73,12 @@
     [self.service resolveWithTimeout:0];    
 }
 
-- (void)sendVoiceCallRequest
+- (void)sendVoiceCallRequestWithPeerID:(NSString *)peerID
 {
     BWMessageObject *newMessage = [[[BWMessageObject alloc] init] autorelease];
     newMessage.kind = MessageKindVoiceCallRequest;
-    newMessage.body = [self.chatSession.peerID dataUsingEncoding:NSUTF8StringEncoding];
+    newMessage.body = [peerID dataUsingEncoding:NSUTF8StringEncoding];
     [self.messageBroker sendMessage:newMessage];
-}
-
-- (void)answerToCallFromPeerID:(NSString *)peerID
-{
-    [self.chatSession connectToPeer:peerID withTimeout:60];
 }
 
 #pragma mark - NSNetServiceDelegate methods
@@ -145,21 +138,12 @@
 {
     switch (message.kind) 
     {
-        case MessageKindVoiceCallRequest:
-        {
-            NSString *peerID = [[[NSString alloc] initWithData:message.body 
-                                                      encoding:NSUTF8StringEncoding] autorelease];
-            if ([self.delegate respondsToSelector:@selector(proxy:didReceiveCallRequestFromPeer:)])
-            {
-                [self.delegate proxy:self didReceiveCallRequestFromPeer:peerID];
-            }
-            break;
-        }
-            
         case MessageKindEndVoiceCall:
         {
-            [self.chatSession disconnectFromAllPeers];
-            self.chatSession = nil;
+            if ([self.delegate performSelector:@selector(proxyDidConnect:)])
+            {
+                [self.delegate proxyDidDisconnect:self];
+            }
             break;
         }
             

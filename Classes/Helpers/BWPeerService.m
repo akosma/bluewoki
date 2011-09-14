@@ -83,7 +83,7 @@
     return NO;
 }
 
--(void)onSocketDidDisconnect:(AsyncSocket *)sock 
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock 
 {
     if (sock == self.connectionSocket)
     {
@@ -93,7 +93,7 @@
     }
 }
 
--(void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port 
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port 
 {
     self.messageBroker = [[[BWMessageBroker alloc] initWithAsyncSocket:sock] autorelease];
     self.messageBroker.delegate = self;

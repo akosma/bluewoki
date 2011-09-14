@@ -51,6 +51,7 @@
 {
     [super viewDidLoad];
     
+    // This makes sure that the remote devices available are updated live
     [[NSNotificationCenter defaultCenter] addObserver:self.tableView
                                              selector:@selector(reloadData) 
                                                  name:PeerBrowserDidChangeCountNotification

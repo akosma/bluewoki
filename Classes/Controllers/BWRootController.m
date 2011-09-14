@@ -82,6 +82,7 @@
     if (self.connection.isConnected)
     {
         [self closeConnectionWithMessage:NSLocalizedString(@"disconnected", @"Shown when the other user disconnects")];
+        self.connection = nil;
     }
     else
     {
@@ -175,6 +176,8 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [UIDevice currentDevice].proximityMonitoringEnabled = NO;
     self.statusLabel.text = message;
+    [self.connectButton setTitle:NSLocalizedString(@"connect", @"Shown on the connect button") 
+                        forState:UIControlStateNormal];
     [self performSelector:@selector(resetInterface) 
                withObject:nil 
                afterDelay:3];

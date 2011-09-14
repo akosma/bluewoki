@@ -21,6 +21,7 @@
 
 - (void)dealloc
 {
+    _pickerController.delegate = nil;
     [_pickerController release];
     [super dealloc];
 }
@@ -29,13 +30,25 @@
 
 - (void)connect
 {
+    [GKVoiceChatService defaultVoiceChatService].client = self;
     self.connected = NO;
+
     self.pickerController = [[[GKPeerPickerController alloc] init] autorelease];
     self.pickerController.delegate = self;
     self.pickerController.connectionTypesMask = GKPeerPickerConnectionTypeNearby;
     [self.pickerController show];
+}
+
+- (void)disconnect
+{
+    [[GKVoiceChatService defaultVoiceChatService] stopVoiceChatWithParticipantID:self.remotePeerID];
+    [GKVoiceChatService defaultVoiceChatService].client = nil;
     
-    [GKVoiceChatService defaultVoiceChatService].client = self;
+    [self.chatSession disconnectFromAllPeers];
+    self.chatSession.delegate = nil;
+    self.chatSession = nil;
+    self.connected = NO;
+    self.remotePeerID = nil;
 }
 
 #pragma mark - GKPeerPickerControllerDelegate methods
@@ -46,7 +59,7 @@
 {
     if (picker == self.pickerController)
     {
-        self.otherPeerID = peerID;
+        self.remotePeerID = peerID;
         self.chatSession = session;
         self.chatSession.delegate = self;
         [self.chatSession setDataReceiveHandler:self withContext:nil];
@@ -54,7 +67,7 @@
         self.pickerController.delegate = nil;
         [self.pickerController dismiss];
         
-        [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:self.otherPeerID 
+        [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:self.remotePeerID 
                                                                                 error:nil];
 
         self.connected = YES;
@@ -63,6 +76,12 @@
             [self.delegate connectionDidConnect:self];
         }
     }
+}
+
+- (GKSession *)peerPickerController:(GKPeerPickerController *)picker 
+           sessionForConnectionType:(GKPeerPickerConnectionType)type
+{
+    return [self createChatSession];
 }
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker

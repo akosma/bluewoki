@@ -16,6 +16,5 @@
 
 - (void)proxyDidConnect:(BWPeerProxy *)proxy;
 - (void)proxyDidDisconnect:(BWPeerProxy *)proxy;
-- (void)proxy:(BWPeerProxy *)proxy didReceiveCallRequestFromPeer:(NSString *)peerID;
 
 @end

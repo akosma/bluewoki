@@ -15,8 +15,6 @@
 @property (nonatomic, retain) BWPeerService *service;
 @property (nonatomic, retain) BWPeerProxy *peerProxy;
 
-- (void)startChatWithPeerID:(NSString *)peerID;
-
 @end
 
 
@@ -27,6 +25,7 @@
 
 - (void)dealloc
 {
+    _service.delegate = nil;
     [_service release];
     [_peerProxy release];
     [super dealloc];
@@ -37,6 +36,12 @@
 - (void)connect
 {
     [GKVoiceChatService defaultVoiceChatService].client = self;
+    self.connected = NO;
+
+    self.chatSession = [self createChatSession];
+    self.chatSession.delegate = self;
+    self.chatSession.available = YES;
+    [self.chatSession setDataReceiveHandler:self withContext:nil];
 
     self.service = [[[BWPeerService alloc] init] autorelease];
     self.service.delegate = self;
@@ -45,23 +50,17 @@
 
 - (void)disconnect
 {
-    [super disconnect];
+    [[GKVoiceChatService defaultVoiceChatService] stopVoiceChatWithParticipantID:self.remotePeerID];
+    [GKVoiceChatService defaultVoiceChatService].client = nil;
+    
+    [self.chatSession disconnectFromAllPeers];
+    self.chatSession.delegate = nil;
+    self.chatSession = nil;
+    self.connected = NO;
+    self.remotePeerID = nil;
+    
+    self.service.delegate = nil;
     [self.service stopService];
-}
-
-#pragma mark - GKPeerPickerControllerDelegate methods
-
-- (void)peerPickerController:(GKPeerPickerController *)picker 
-              didConnectPeer:(NSString *)peerID
-                   toSession:(GKSession *)session 
-{
-    self.chatSession = session;
-    self.chatSession.delegate = self;
-    
-    picker.delegate = nil;
-    [picker dismiss];
-    
-    [self startChatWithPeerID:peerID];
 }
 
 #pragma mark - GKSessionDelegate methods
@@ -70,9 +69,9 @@
 {
     if (session == self.chatSession)
     {
+        // This method is only called in the device that receives a call
         [self.chatSession acceptConnectionFromPeer:peerID 
                                              error:nil];
-        [self.chatSession connectToPeer:peerID withTimeout:60];
     }
 }
 
@@ -92,7 +91,16 @@
                 
             case GKPeerStateConnected:
             {
-                [self startChatWithPeerID:peerID];
+                self.connected = YES;
+                self.remotePeerID = peerID;
+
+                [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:peerID 
+                                                                                        error:nil];
+
+                if ([self.delegate respondsToSelector:@selector(connectionDidConnect:)])
+                {
+                    [self.delegate connectionDidConnect:self];
+                }
                 break;
             }
                 
@@ -118,24 +126,12 @@ connectionWithPeerFailed:(NSString *)peerID
 {
     if (session == self.chatSession)
     {
+        self.connected = NO;
+        if ([self.delegate respondsToSelector:@selector(connectionDidDisconnect:)])
+        {
+            [self.delegate connectionDidDisconnect:self];
+        }
     }
-}
-
-#pragma mark - GKVoiceChatClient methods
-
-- (void)voiceChatService:(GKVoiceChatService *)voiceChatService
-didStopWithParticipantID:(NSString *)participantID
-                   error:(NSError *)error
-{
-    if ([self.delegate respondsToSelector:@selector(connectionDidDisconnect:)])
-    {
-        [self.delegate connectionDidDisconnect:self];
-    }
-}
-
--  (void)voiceChatService:(GKVoiceChatService *)voiceChatService 
-didStartWithParticipantID:(NSString *)participantID
-{
 }
 
 #pragma mark - BWPeerServiceDelegate methods
@@ -144,6 +140,13 @@ didStartWithParticipantID:(NSString *)participantID
 {
     if (service == self.service)
     {
+        // Called when another device is calling this one.
+        if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
+        {
+            [self.delegate connectionIsConnecting:self];
+        }
+        [self.chatSession connectToPeer:peerID
+                            withTimeout:60];
     }
 }
 
@@ -153,52 +156,26 @@ didStartWithParticipantID:(NSString *)participantID
 {
     self.peerProxy = peer;
     self.peerProxy.delegate = self;
+    
+    // Upon success, the method proxyDidConnect: below will be called
     [self.peerProxy connect];
+    
     if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
     {
         [self.delegate connectionIsConnecting:self];
     }
 }
 
-#pragma mark - PeerProxyDelegate methods
+#pragma mark - BWPeerProxyDelegate methods
 
 - (void)proxyDidConnect:(BWPeerProxy *)proxy
 {
     if (proxy == self.peerProxy)
     {
-        self.peerProxy.chatSession = self.chatSession;
-        [self.peerProxy sendVoiceCallRequest];
+        // Called when the current device has an open socket with 
+        // the remote device selected by the current user.
+        [self.peerProxy sendVoiceCallRequestWithPeerID:self.chatSession.peerID];
     }
-}
-
-- (void)proxy:(BWPeerProxy *)proxy didReceiveCallRequestFromPeer:(NSString *)peerID;
-{
-    if (proxy == self.peerProxy)
-    {
-        NSString *sessionId = @"bluewoki";
-        NSString *name = [[UIDevice currentDevice] name];
-        GKSession* session = [[[GKSession alloc] initWithSessionID:sessionId 
-                                                       displayName:name 
-                                                       sessionMode:GKSessionModePeer] autorelease];
-        self.chatSession = session;
-        self.chatSession.delegate = self;
-        self.peerProxy.chatSession = self.chatSession;
-
-        if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
-        {
-            [self.delegate connectionIsConnecting:self];
-        }
-        [self.chatSession connectToPeer:peerID withTimeout:60];
-    }
-}
-
-#pragma mark - Private methods
-
-- (void)startChatWithPeerID:(NSString *)peerID
-{
-    self.otherPeerID = peerID;
-    [[GKVoiceChatService defaultVoiceChatService] startVoiceChatWithParticipantID:self.otherPeerID 
-                                                                            error:nil];
 }
 
 @end

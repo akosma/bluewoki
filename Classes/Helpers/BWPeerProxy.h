@@ -14,7 +14,6 @@
 @interface BWPeerProxy : NSObject <NSNetServiceDelegate,
                                  BWMessageBrokerDelegate>
 
-@property (nonatomic, retain) GKSession *chatSession;
 @property (nonatomic, getter = isConnected) BOOL connected;
 @property (nonatomic, assign) id<BWPeerProxyDelegate> delegate;
 @property (nonatomic, readonly) NSString *serviceName;
@@ -22,7 +21,6 @@
 + (id)proxyWithService:(NSNetService *)service;
 - (id)initWithService:(NSNetService *)service;
 - (void)connect;
-- (void)sendVoiceCallRequest;
-- (void)answerToCallFromPeerID:(NSString *)peerID;
+- (void)sendVoiceCallRequestWithPeerID:(NSString *)peerID;
 
 @end

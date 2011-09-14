@@ -11,7 +11,7 @@
 @implementation BWConnection
 
 @synthesize delegate = _delegate;
-@synthesize otherPeerID = _otherPeerID;
+@synthesize remotePeerID = _otherPeerID;
 @synthesize chatSession = _chatSession;
 @synthesize connected = _connected;
 @dynamic otherPeerName;
@@ -32,30 +32,20 @@
 
 - (NSString *)otherPeerName
 {
-    return [self.chatSession displayNameForPeer:self.otherPeerID];
+    return [self.chatSession displayNameForPeer:self.remotePeerID];
 }
 
 - (void)connect
 {
-    // To be overridden by subclasses
+    // Overridden by subclasses
 }
 
 - (void)disconnect
 {
-    // Can be overridden by subclasses
-    // but remember to call this method!
-    [[GKVoiceChatService defaultVoiceChatService] stopVoiceChatWithParticipantID:self.otherPeerID];
-    [self.chatSession disconnectFromAllPeers];
-    self.chatSession.delegate = nil;
-    self.chatSession = nil;
-    self.connected = NO;
-    self.otherPeerID = nil;
+    // Overridden by subclasses
 }
 
-#pragma mark - GKPeerPickerControllerDelegate methods
-
-- (GKSession *)peerPickerController:(GKPeerPickerController *)picker 
-           sessionForConnectionType:(GKPeerPickerConnectionType)type
+- (GKSession *)createChatSession
 {
     NSString *sessionId = @"bluewoki";
     NSString *name = [[UIDevice currentDevice] name];
@@ -78,7 +68,8 @@
 {
     [self.chatSession sendData:data 
                        toPeers:[NSArray arrayWithObject:participantID] 
-                  withDataMode:GKSendDataReliable error: nil];
+                  withDataMode:GKSendDataReliable 
+                         error:nil];
 }
 
 - (void)receiveData:(NSData *)data 
@@ -88,6 +79,22 @@
 {
     [[GKVoiceChatService defaultVoiceChatService] receivedData:data 
                                              fromParticipantID:peer];
+}
+
+- (void)voiceChatService:(GKVoiceChatService *)voiceChatService
+didStopWithParticipantID:(NSString *)participantID
+                   error:(NSError *)error
+{
+    self.connected = NO;
+    if ([self.delegate respondsToSelector:@selector(connectionDidDisconnect:)])
+    {
+        [self.delegate connectionDidDisconnect:self];
+    }
+}
+
+-  (void)voiceChatService:(GKVoiceChatService *)voiceChatService 
+didStartWithParticipantID:(NSString *)participantID
+{
 }
 
 @end
