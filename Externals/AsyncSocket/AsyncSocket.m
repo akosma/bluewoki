@@ -36,7 +36,7 @@
 #define DEBUG_THREAD_SAFETY 0
 // 
 // If you constantly need to access your socket from multiple threads
-// then you may consider using AsyncSocket instead, which is thread-safe.
+// then you may consider using GCDAsyncSocket instead, which is thread-safe.
 
 NSString *const AsyncSocketException = @"AsyncSocketException";
 NSString *const AsyncSocketErrorDomain = @"AsyncSocketErrorDomain";
@@ -771,7 +771,7 @@ static void MyCFWriteStreamCallback(CFWriteStreamRef stream, CFStreamEventType t
 		// Note:
 		// 
 		// If you find you constantly need to access your socket from various threads,
-		// you may prefer to use AsyncSocket which is thread-safe.
+		// you may prefer to use GCDAsyncSocket which is thread-safe.
 	}
 }
 
@@ -1416,7 +1416,10 @@ static void MyCFWriteStreamCallback(CFWriteStreamRef stream, CFStreamEventType t
 		UInt16 chosenPort = [self localPortFromCFSocket4:theSocket4];
 		
 		struct sockaddr_in6 *pSockAddr6 = (struct sockaddr_in6 *)[address6 bytes];
-		pSockAddr6->sin6_port = htons(chosenPort);
+		if (pSockAddr6) // If statement to quiet the static analyzer
+		{
+			pSockAddr6->sin6_port = htons(chosenPort);
+		}
     }
 	
 	if (theSocket6)
