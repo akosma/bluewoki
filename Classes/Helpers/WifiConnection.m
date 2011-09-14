@@ -144,6 +144,10 @@ didStartWithParticipantID:(NSString *)participantID
 {
     if (service == self.service)
     {
+        if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
+        {
+            [self.delegate connectionIsConnecting:self];
+        }
         [self.chatSession connectToPeer:peerID withTimeout:60];
     }
 }
@@ -152,13 +156,13 @@ didStartWithParticipantID:(NSString *)participantID
 
 - (void)peersBrowserController:(PeersBrowserController *)controller didSelectPeer:(PeerProxy *)peer
 {
+    self.peerProxy = peer;
+    self.peerProxy.delegate = self;
+    [self.peerProxy connect];
     if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
     {
         [self.delegate connectionIsConnecting:self];
     }
-    self.peerProxy = peer;
-    self.peerProxy.delegate = self;
-    [self.peerProxy connect];
 }
 
 #pragma mark - PeerProxyDelegate methods
