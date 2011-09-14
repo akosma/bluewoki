@@ -3,7 +3,7 @@
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 akosma software. All rights reserved.
 //
 
 #import "PeersBrowserController.h"

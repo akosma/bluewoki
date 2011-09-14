@@ -10,21 +10,15 @@
 #import <GameKit/GameKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "PeersBrowserControllerDelegate.h"
-#import "PeerProxyDelegate.h"
-#import "PeerServiceDelegate.h"
+#import "ConnectionDelegate.h"
 
-@interface BluewokiViewController : UIViewController <GKPeerPickerControllerDelegate,
-                                                      GKSessionDelegate,
-                                                      GKVoiceChatClient,
-                                                      PeersBrowserControllerDelegate,
-                                                      PeerProxyDelegate,
-                                                      PeerServiceDelegate>
+@interface BluewokiViewController : UIViewController <ConnectionDelegate,
+                                                      GKPeerPickerControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UILabel *statusLabel;
 @property (nonatomic, retain) IBOutlet UIButton *connectButton;
 
-- (IBAction)showPeers:(id)sender;
+- (IBAction)showConnectionKinds:(id)sender;
 - (IBAction)openWebsite:(id)sender;
 
 @end

@@ -11,6 +11,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		3A57D1051420939E002E5F5D /* BluetoothConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D1041420939E002E5F5D /* BluetoothConnection.m */; };
+		3A57D109142098BC002E5F5D /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D108142098BC002E5F5D /* Connection.m */; };
+		3A57D10C1420A06E002E5F5D /* WifiConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D10B1420A06E002E5F5D /* WifiConnection.m */; };
 		3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */; };
 		3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */; };
 		3A5FBAEE0FF8B0400060478C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAED0FF8B0400060478C /* AVFoundation.framework */; };
@@ -47,6 +50,13 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* bluewoki_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluewoki_Prefix.pch; sourceTree = "<group>"; };
+		3A57D1031420939E002E5F5D /* BluetoothConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothConnection.h; sourceTree = "<group>"; };
+		3A57D1041420939E002E5F5D /* BluetoothConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothConnection.m; sourceTree = "<group>"; };
+		3A57D10614209438002E5F5D /* ConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionDelegate.h; sourceTree = "<group>"; };
+		3A57D107142098BC002E5F5D /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		3A57D108142098BC002E5F5D /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		3A57D10A1420A06E002E5F5D /* WifiConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiConnection.h; sourceTree = "<group>"; };
+		3A57D10B1420A06E002E5F5D /* WifiConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiConnection.m; sourceTree = "<group>"; };
 		3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluewokiViewController.xib; sourceTree = "<group>"; };
 		3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A5FBAED0FF8B0400060478C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -232,6 +242,13 @@
 				3A7C56011388561200D29272 /* PeerServiceDelegate.h */,
 				3A891AC313882A2700804131 /* PeerBrowser.h */,
 				3A891AC413882A2700804131 /* PeerBrowser.m */,
+				3A57D107142098BC002E5F5D /* Connection.h */,
+				3A57D108142098BC002E5F5D /* Connection.m */,
+				3A57D10614209438002E5F5D /* ConnectionDelegate.h */,
+				3A57D1031420939E002E5F5D /* BluetoothConnection.h */,
+				3A57D1041420939E002E5F5D /* BluetoothConnection.m */,
+				3A57D10A1420A06E002E5F5D /* WifiConnection.h */,
+				3A57D10B1420A06E002E5F5D /* WifiConnection.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -360,6 +377,9 @@
 				3A891AC21388280000804131 /* PeerService.m in Sources */,
 				3A891AC513882A2700804131 /* PeerBrowser.m in Sources */,
 				3A891AC81388316F00804131 /* PeersBrowserController.m in Sources */,
+				3A57D1051420939E002E5F5D /* BluetoothConnection.m in Sources */,
+				3A57D109142098BC002E5F5D /* Connection.m in Sources */,
+				3A57D10C1420A06E002E5F5D /* WifiConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
