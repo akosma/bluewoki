@@ -12,12 +12,12 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */; };
-		3A5FBAE80FF8AFF90060478C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAE70FF8AFF90060478C /* Entitlements.plist */; };
 		3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */; };
 		3A5FBAEE0FF8B0400060478C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAED0FF8B0400060478C /* AVFoundation.framework */; };
 		3A5FBAF00FF8B0480060478C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEF0FF8B0480060478C /* GameKit.framework */; };
 		3A5FBAF80FF8B0D50060478C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF60FF8B0D50060478C /* Default.png */; };
 		3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF70FF8B0D50060478C /* Icon.png */; };
+		3A61C07314208C3100FEA33D /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 3A61C07214208C3100FEA33D /* Entitlements.entitlements */; };
 		3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */; };
 		3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9E13881F8000804131 /* BluewokiViewController.m */; };
 		3A891AA713881F8000804131 /* MessageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA113881F8000804131 /* MessageObject.m */; };
@@ -48,12 +48,12 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* bluewoki_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluewoki_Prefix.pch; sourceTree = "<group>"; };
 		3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluewokiViewController.xib; sourceTree = "<group>"; };
-		3A5FBAE70FF8AFF90060478C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A5FBAED0FF8B0400060478C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3A5FBAEF0FF8B0480060478C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3A5FBAF60FF8B0D50060478C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3A5FBAF70FF8B0D50060478C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		3A61C07214208C3100FEA33D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3A7C55F813883E7600D29272 /* PeersBrowserControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeersBrowserControllerDelegate.h; sourceTree = "<group>"; };
 		3A7C56011388561200D29272 /* PeerServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServiceDelegate.h; sourceTree = "<group>"; };
 		3A891A9A13881F8000804131 /* BluewokiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiAppDelegate.h; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				3AF6C9430FF8B7F000312D0A /* NIBs */,
 				3A5FBAF50FF8B0D50060478C /* Images */,
 				8D1107310486CEB800E47090 /* bluewoki-Info.plist */,
-				3A5FBAE70FF8AFF90060478C /* Entitlements.plist */,
+				3A61C07214208C3100FEA33D /* Entitlements.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -326,7 +326,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5FBAE80FF8AFF90060478C /* Entitlements.plist in Resources */,
 				3A5FBAF80FF8B0D50060478C /* Default.png in Resources */,
 				3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */,
 				3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */,
@@ -339,6 +338,7 @@
 				3AD05E4E1420869700D4971C /* Icon-Small@2x.png in Resources */,
 				3AD05E4F1420869700D4971C /* Icon@2x.png in Resources */,
 				3AD05E501420869700D4971C /* iTunesArtwork in Resources */,
+				3A61C07314208C3100FEA33D /* Entitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +399,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Resources/Entitlements.entitlements;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = bluewoki_Prefix.pch;
@@ -427,11 +428,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Resources/Entitlements.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
