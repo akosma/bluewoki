@@ -1,16 +1,16 @@
 //
-//  WifiConnection.m
+//  BWWifiConnection.m
 //  bluewoki
 //
 //  Created by Adrian on 9/14/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "WifiConnection.h"
+#import "BWWifiConnection.h"
 #import "PeerService.h"
 #import "PeerProxy.h"
 
-@interface WifiConnection ()
+@interface BWWifiConnection ()
 
 @property (nonatomic, retain) PeerService *service;
 @property (nonatomic, retain) PeerProxy *peerProxy;
@@ -20,7 +20,7 @@
 @end
 
 
-@implementation WifiConnection
+@implementation BWWifiConnection
 
 @synthesize service = _service;
 @synthesize peerProxy = _peerProxy;
@@ -152,9 +152,9 @@ didStartWithParticipantID:(NSString *)participantID
     }
 }
 
-#pragma mark - PeersBrowserControllerDelegate methods
+#pragma mark - BWBrowserControllerDelegate methods
 
-- (void)peersBrowserController:(PeersBrowserController *)controller didSelectPeer:(PeerProxy *)peer
+- (void)peersBrowserController:(BWBrowserController *)controller didSelectPeer:(PeerProxy *)peer
 {
     self.peerProxy = peer;
     self.peerProxy.delegate = self;

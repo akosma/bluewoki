@@ -1,5 +1,5 @@
 //
-//  Connection.h
+//  BWConnection.h
 //  bluewoki
 //
 //  Created by Adrian on 9/14/11.
@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
-#import "ConnectionDelegate.h"
-#import "PeersBrowserControllerDelegate.h"
+#import "BWConnectionDelegate.h"
+#import "BWBrowserControllerDelegate.h"
 
-@interface Connection : NSObject <GKPeerPickerControllerDelegate,
+@interface BWConnection : NSObject <GKPeerPickerControllerDelegate,
                                   GKSessionDelegate,
                                   GKVoiceChatClient,
-                                  PeersBrowserControllerDelegate>
+                                  BWBrowserControllerDelegate>
 
-@property (nonatomic, assign) id<ConnectionDelegate> delegate;
+@property (nonatomic, assign) id<BWConnectionDelegate> delegate;
 @property (nonatomic, copy) NSString *otherPeerID;
 @property (nonatomic, getter = isConnected) BOOL connected;
 @property (nonatomic, readonly) NSString *otherPeerName;

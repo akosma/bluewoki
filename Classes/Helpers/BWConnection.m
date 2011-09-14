@@ -1,14 +1,14 @@
 //
-//  Connection.m
+//  BWConnection.m
 //  bluewoki
 //
 //  Created by Adrian on 9/14/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "Connection.h"
+#import "BWConnection.h"
 
-@implementation Connection
+@implementation BWConnection
 
 @synthesize delegate = _delegate;
 @synthesize otherPeerID = _otherPeerID;

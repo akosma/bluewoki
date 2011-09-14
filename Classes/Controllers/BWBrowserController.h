@@ -1,5 +1,5 @@
 //
-//  PeersBrowserController.h
+//  BWBrowserController.h
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PeersBrowserControllerDelegate.h"
+#import "BWBrowserControllerDelegate.h"
 
 @class PeerBrowser;
 
-@interface PeersBrowserController : UITableViewController
+@interface BWBrowserController : UITableViewController
 
 @property (nonatomic, retain) PeerBrowser *browser;
-@property (nonatomic, assign) id<PeersBrowserControllerDelegate> delegate;
+@property (nonatomic, assign) id<BWBrowserControllerDelegate> delegate;
 
 @end

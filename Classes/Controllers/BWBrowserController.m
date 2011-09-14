@@ -1,23 +1,23 @@
 //
-//  PeersBrowserController.m
+//  BWBrowserController.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "PeersBrowserController.h"
+#import "BWBrowserController.h"
 #import "PeerBrowser.h"
 #import "PeerProxy.h"
 
-@interface PeersBrowserController ()
+@interface BWBrowserController ()
 
 @property (nonatomic, retain) UIBarButtonItem *cancelItem;
 
 @end
 
 
-@implementation PeersBrowserController
+@implementation BWBrowserController
 
 @synthesize browser = _browser;
 @synthesize cancelItem = _cancelItem;

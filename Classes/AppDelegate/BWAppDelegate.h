@@ -1,5 +1,5 @@
 //
-//  BluewokiAppDelegate.h
+//  BWAppDelegate.h
 //  bluewoki
 //
 //  Created by Adrian on 6/29/09.
@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class BluewokiViewController;
+@class BWRootController;
 
-@interface BluewokiAppDelegate : NSObject <UIApplicationDelegate>
+@interface BWAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet BluewokiViewController *controller;
+@property (nonatomic, retain) IBOutlet BWRootController *controller;
 
 @end
 

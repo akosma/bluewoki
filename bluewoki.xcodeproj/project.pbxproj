@@ -11,18 +11,18 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		3A57D1051420939E002E5F5D /* BluetoothConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D1041420939E002E5F5D /* BluetoothConnection.m */; };
-		3A57D109142098BC002E5F5D /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D108142098BC002E5F5D /* Connection.m */; };
-		3A57D10C1420A06E002E5F5D /* WifiConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D10B1420A06E002E5F5D /* WifiConnection.m */; };
-		3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */; };
+		3A57D1051420939E002E5F5D /* BWBluetoothConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D1041420939E002E5F5D /* BWBluetoothConnection.m */; };
+		3A57D109142098BC002E5F5D /* BWConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D108142098BC002E5F5D /* BWConnection.m */; };
+		3A57D10C1420A06E002E5F5D /* BWWifiConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D10B1420A06E002E5F5D /* BWWifiConnection.m */; };
+		3A5C41D313881C0A008FB231 /* BWRootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BWRootController.xib */; };
 		3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */; };
 		3A5FBAEE0FF8B0400060478C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAED0FF8B0400060478C /* AVFoundation.framework */; };
 		3A5FBAF00FF8B0480060478C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEF0FF8B0480060478C /* GameKit.framework */; };
 		3A5FBAF80FF8B0D50060478C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF60FF8B0D50060478C /* Default.png */; };
 		3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF70FF8B0D50060478C /* Icon.png */; };
 		3A61C07314208C3100FEA33D /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 3A61C07214208C3100FEA33D /* Entitlements.entitlements */; };
-		3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */; };
-		3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9E13881F8000804131 /* BluewokiViewController.m */; };
+		3A891AA513881F8000804131 /* BWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9B13881F8000804131 /* BWAppDelegate.m */; };
+		3A891AA613881F8000804131 /* BWRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891A9E13881F8000804131 /* BWRootController.m */; };
 		3A891AA713881F8000804131 /* MessageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA113881F8000804131 /* MessageObject.m */; };
 		3A891AA813881F8000804131 /* MessageBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AA313881F8000804131 /* MessageBroker.m */; };
 		3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AAC13881FAE00804131 /* AsyncSocket.m */; };
@@ -31,7 +31,7 @@
 		3A891ABD138823D000804131 /* Protocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891ABC138823D000804131 /* Protocol.m */; };
 		3A891AC21388280000804131 /* PeerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC11388280000804131 /* PeerService.m */; };
 		3A891AC513882A2700804131 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC413882A2700804131 /* PeerBrowser.m */; };
-		3A891AC81388316F00804131 /* PeersBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC71388316F00804131 /* PeersBrowserController.m */; };
+		3A891AC81388316F00804131 /* BWBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A891AC71388316F00804131 /* BWBrowserController.m */; };
 		3AD05E44142083FF00D4971C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD05E43142083FF00D4971C /* Default@2x.png */; };
 		3AD05E4B1420869700D4971C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD05E451420869700D4971C /* Icon-72.png */; };
 		3AD05E4C1420869700D4971C /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD05E461420869700D4971C /* Icon-Small-50.png */; };
@@ -50,26 +50,26 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* bluewoki_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluewoki_Prefix.pch; sourceTree = "<group>"; };
-		3A57D1031420939E002E5F5D /* BluetoothConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothConnection.h; sourceTree = "<group>"; };
-		3A57D1041420939E002E5F5D /* BluetoothConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothConnection.m; sourceTree = "<group>"; };
-		3A57D10614209438002E5F5D /* ConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionDelegate.h; sourceTree = "<group>"; };
-		3A57D107142098BC002E5F5D /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
-		3A57D108142098BC002E5F5D /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
-		3A57D10A1420A06E002E5F5D /* WifiConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiConnection.h; sourceTree = "<group>"; };
-		3A57D10B1420A06E002E5F5D /* WifiConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiConnection.m; sourceTree = "<group>"; };
-		3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluewokiViewController.xib; sourceTree = "<group>"; };
+		3A57D1031420939E002E5F5D /* BWBluetoothConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWBluetoothConnection.h; sourceTree = "<group>"; };
+		3A57D1041420939E002E5F5D /* BWBluetoothConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWBluetoothConnection.m; sourceTree = "<group>"; };
+		3A57D10614209438002E5F5D /* BWConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWConnectionDelegate.h; sourceTree = "<group>"; };
+		3A57D107142098BC002E5F5D /* BWConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWConnection.h; sourceTree = "<group>"; };
+		3A57D108142098BC002E5F5D /* BWConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWConnection.m; sourceTree = "<group>"; };
+		3A57D10A1420A06E002E5F5D /* BWWifiConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWWifiConnection.h; sourceTree = "<group>"; };
+		3A57D10B1420A06E002E5F5D /* BWWifiConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWWifiConnection.m; sourceTree = "<group>"; };
+		3A5C41D213881C0A008FB231 /* BWRootController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BWRootController.xib; sourceTree = "<group>"; };
 		3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A5FBAED0FF8B0400060478C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3A5FBAEF0FF8B0480060478C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3A5FBAF60FF8B0D50060478C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3A5FBAF70FF8B0D50060478C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3A61C07214208C3100FEA33D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
-		3A7C55F813883E7600D29272 /* PeersBrowserControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeersBrowserControllerDelegate.h; sourceTree = "<group>"; };
+		3A7C55F813883E7600D29272 /* BWBrowserControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWBrowserControllerDelegate.h; sourceTree = "<group>"; };
 		3A7C56011388561200D29272 /* PeerServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServiceDelegate.h; sourceTree = "<group>"; };
-		3A891A9A13881F8000804131 /* BluewokiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiAppDelegate.h; sourceTree = "<group>"; };
-		3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiAppDelegate.m; sourceTree = "<group>"; };
-		3A891A9D13881F8000804131 /* BluewokiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluewokiViewController.h; sourceTree = "<group>"; };
-		3A891A9E13881F8000804131 /* BluewokiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluewokiViewController.m; sourceTree = "<group>"; };
+		3A891A9A13881F8000804131 /* BWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWAppDelegate.h; sourceTree = "<group>"; };
+		3A891A9B13881F8000804131 /* BWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWAppDelegate.m; sourceTree = "<group>"; };
+		3A891A9D13881F8000804131 /* BWRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWRootController.h; sourceTree = "<group>"; };
+		3A891A9E13881F8000804131 /* BWRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWRootController.m; sourceTree = "<group>"; };
 		3A891AA013881F8000804131 /* MessageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageObject.h; sourceTree = "<group>"; };
 		3A891AA113881F8000804131 /* MessageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageObject.m; sourceTree = "<group>"; };
 		3A891AA213881F8000804131 /* MessageBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBroker.h; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 		3A891AC11388280000804131 /* PeerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerService.m; sourceTree = "<group>"; };
 		3A891AC313882A2700804131 /* PeerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerBrowser.h; sourceTree = "<group>"; };
 		3A891AC413882A2700804131 /* PeerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerBrowser.m; sourceTree = "<group>"; };
-		3A891AC61388316F00804131 /* PeersBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeersBrowserController.h; sourceTree = "<group>"; };
-		3A891AC71388316F00804131 /* PeersBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeersBrowserController.m; sourceTree = "<group>"; };
+		3A891AC61388316F00804131 /* BWBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BWBrowserController.h; sourceTree = "<group>"; };
+		3A891AC71388316F00804131 /* BWBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWBrowserController.m; sourceTree = "<group>"; };
 		3AD05E43142083FF00D4971C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3AD05E451420869700D4971C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		3AD05E461420869700D4971C /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 		3A891A9913881F8000804131 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				3A891A9A13881F8000804131 /* BluewokiAppDelegate.h */,
-				3A891A9B13881F8000804131 /* BluewokiAppDelegate.m */,
+				3A891A9A13881F8000804131 /* BWAppDelegate.h */,
+				3A891A9B13881F8000804131 /* BWAppDelegate.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -215,11 +215,11 @@
 		3A891A9C13881F8000804131 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3A891A9D13881F8000804131 /* BluewokiViewController.h */,
-				3A891A9E13881F8000804131 /* BluewokiViewController.m */,
-				3A891AC61388316F00804131 /* PeersBrowserController.h */,
-				3A891AC71388316F00804131 /* PeersBrowserController.m */,
-				3A7C55F813883E7600D29272 /* PeersBrowserControllerDelegate.h */,
+				3A891A9D13881F8000804131 /* BWRootController.h */,
+				3A891A9E13881F8000804131 /* BWRootController.m */,
+				3A891AC61388316F00804131 /* BWBrowserController.h */,
+				3A891AC71388316F00804131 /* BWBrowserController.m */,
+				3A7C55F813883E7600D29272 /* BWBrowserControllerDelegate.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -242,13 +242,13 @@
 				3A7C56011388561200D29272 /* PeerServiceDelegate.h */,
 				3A891AC313882A2700804131 /* PeerBrowser.h */,
 				3A891AC413882A2700804131 /* PeerBrowser.m */,
-				3A57D107142098BC002E5F5D /* Connection.h */,
-				3A57D108142098BC002E5F5D /* Connection.m */,
-				3A57D10614209438002E5F5D /* ConnectionDelegate.h */,
-				3A57D1031420939E002E5F5D /* BluetoothConnection.h */,
-				3A57D1041420939E002E5F5D /* BluetoothConnection.m */,
-				3A57D10A1420A06E002E5F5D /* WifiConnection.h */,
-				3A57D10B1420A06E002E5F5D /* WifiConnection.m */,
+				3A57D107142098BC002E5F5D /* BWConnection.h */,
+				3A57D108142098BC002E5F5D /* BWConnection.m */,
+				3A57D10614209438002E5F5D /* BWConnectionDelegate.h */,
+				3A57D1031420939E002E5F5D /* BWBluetoothConnection.h */,
+				3A57D1041420939E002E5F5D /* BWBluetoothConnection.m */,
+				3A57D10A1420A06E002E5F5D /* BWWifiConnection.h */,
+				3A57D10B1420A06E002E5F5D /* BWWifiConnection.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF6C9440FF8B7F000312D0A /* MainWindow.xib */,
-				3A5C41D213881C0A008FB231 /* BluewokiViewController.xib */,
+				3A5C41D213881C0A008FB231 /* BWRootController.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 				3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */,
 				3AF6C9450FF8B7F000312D0A /* MainWindow.xib in Resources */,
 				3AF6F7490FF8DEA50083EA15 /* Localizable.strings in Resources */,
-				3A5C41D313881C0A008FB231 /* BluewokiViewController.xib in Resources */,
+				3A5C41D313881C0A008FB231 /* BWRootController.xib in Resources */,
 				3AD05E44142083FF00D4971C /* Default@2x.png in Resources */,
 				3AD05E4B1420869700D4971C /* Icon-72.png in Resources */,
 				3AD05E4C1420869700D4971C /* Icon-Small-50.png in Resources */,
@@ -367,8 +367,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				3A891AA513881F8000804131 /* BluewokiAppDelegate.m in Sources */,
-				3A891AA613881F8000804131 /* BluewokiViewController.m in Sources */,
+				3A891AA513881F8000804131 /* BWAppDelegate.m in Sources */,
+				3A891AA613881F8000804131 /* BWRootController.m in Sources */,
 				3A891AA713881F8000804131 /* MessageObject.m in Sources */,
 				3A891AA813881F8000804131 /* MessageBroker.m in Sources */,
 				3A891AAD13881FAE00804131 /* AsyncSocket.m in Sources */,
@@ -376,10 +376,10 @@
 				3A891ABD138823D000804131 /* Protocol.m in Sources */,
 				3A891AC21388280000804131 /* PeerService.m in Sources */,
 				3A891AC513882A2700804131 /* PeerBrowser.m in Sources */,
-				3A891AC81388316F00804131 /* PeersBrowserController.m in Sources */,
-				3A57D1051420939E002E5F5D /* BluetoothConnection.m in Sources */,
-				3A57D109142098BC002E5F5D /* Connection.m in Sources */,
-				3A57D10C1420A06E002E5F5D /* WifiConnection.m in Sources */,
+				3A891AC81388316F00804131 /* BWBrowserController.m in Sources */,
+				3A57D1051420939E002E5F5D /* BWBluetoothConnection.m in Sources */,
+				3A57D109142098BC002E5F5D /* BWConnection.m in Sources */,
+				3A57D10C1420A06E002E5F5D /* BWWifiConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

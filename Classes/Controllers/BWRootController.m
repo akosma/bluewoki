@@ -1,19 +1,19 @@
 //
-//  BluewokiViewController.m
+//  BWRootController.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "BluewokiViewController.h"
-#import "PeersBrowserController.h"
-#import "BluetoothConnection.h"
-#import "WifiConnection.h"
+#import "BWRootController.h"
+#import "BWBrowserController.h"
+#import "BWBluetoothConnection.h"
+#import "BWWifiConnection.h"
 
-@interface BluewokiViewController ()
+@interface BWRootController ()
 
-@property (nonatomic, retain) Connection *connection;
+@property (nonatomic, retain) BWConnection *connection;
 @property (nonatomic, retain) UINavigationController *navController;
 
 - (void)closeConnectionWithMessage:(NSString *)message;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation BluewokiViewController
+@implementation BWRootController
 
 @synthesize statusLabel = _statusLabel;
 @synthesize connectButton = _connectButton;
@@ -110,11 +110,11 @@
     {
         case GKPeerPickerConnectionTypeOnline:
         {
-            self.connection = [WifiConnection connection];
+            self.connection = [BWWifiConnection connection];
 
             if (self.navController == nil)
             {
-                PeersBrowserController *peersBrowserController = [[[PeersBrowserController alloc] init] autorelease];
+                BWBrowserController *peersBrowserController = [[[BWBrowserController alloc] init] autorelease];
                 peersBrowserController.delegate = self.connection;
                 self.navController = [[[UINavigationController alloc] initWithRootViewController:peersBrowserController] autorelease];
             }
@@ -125,7 +125,7 @@
             
         case GKPeerPickerConnectionTypeNearby:
         {
-            self.connection = [BluetoothConnection connection];
+            self.connection = [BWBluetoothConnection connection];
             break;
         }
             
@@ -136,14 +136,14 @@
     [self.connection connect];
 }
 
-#pragma mark - ConnectionDelegate methods
+#pragma mark - BWConnectionDelegate methods
 
-- (void)connection:(Connection *)connection didFailWithError:(NSError *)error
+- (void)connection:(BWConnection *)connection didFailWithError:(NSError *)error
 {
     [self closeConnectionWithMessage:NSLocalizedString(@"error", @"Shown when the connection generated an error")];
 }
 
-- (void)connectionIsConnecting:(Connection *)connection
+- (void)connectionIsConnecting:(BWConnection *)connection
 {
     if (self.navController != nil)
     {
@@ -152,7 +152,7 @@
     self.statusLabel.text = NSLocalizedString(@"connecting", @"Shown while the connection is negotiated");
 }
 
-- (void)connectionDidConnect:(Connection *)connection
+- (void)connectionDidConnect:(BWConnection *)connection
 {
     self.statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"connected with", @"Shows who we're talking to"), 
                              self.connection.otherPeerName];
@@ -162,7 +162,7 @@
                         forState:UIControlStateNormal];
 }
 
-- (void)connectionDidDisconnect:(Connection *)connection
+- (void)connectionDidDisconnect:(BWConnection *)connection
 {
     [self closeConnectionWithMessage:NSLocalizedString(@"peer disconnected", @"Shown when the other user disconnects")];
 }

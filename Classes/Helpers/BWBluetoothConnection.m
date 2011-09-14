@@ -1,21 +1,21 @@
 //
-//  BluetoothConnection.m
+//  BWBluetoothConnection.m
 //  bluewoki
 //
 //  Created by Adrian on 9/14/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "BluetoothConnection.h"
+#import "BWBluetoothConnection.h"
 
-@interface BluetoothConnection ()
+@interface BWBluetoothConnection ()
 
 @property (nonatomic, retain) GKPeerPickerController *pickerController;
 
 @end
 
 
-@implementation BluetoothConnection
+@implementation BWBluetoothConnection
 
 @synthesize pickerController = _pickerController;
 

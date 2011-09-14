@@ -1,15 +1,15 @@
 //
-//  BluewokiAppDelegate.m
+//  BWAppDelegate.m
 //  bluewoki
 //
 //  Created by Adrian on 6/29/09.
 //  Copyright akosma software 2009. All rights reserved.
 //
 
-#import "BluewokiAppDelegate.h"
-#import "BluewokiViewController.h"
+#import "BWAppDelegate.h"
+#import "BWRootController.h"
 
-@implementation BluewokiAppDelegate
+@implementation BWAppDelegate
 
 @synthesize window = _window;
 @synthesize controller = _controller;
