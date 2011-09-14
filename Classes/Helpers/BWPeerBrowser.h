@@ -1,5 +1,5 @@
 //
-//  PeerBrowser.h
+//  BWPeerBrowser.h
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
@@ -10,9 +10,9 @@
 
 extern NSString * const PeerBrowserDidChangeCountNotification;
 
-@class PeerProxy;
+@class BWPeerProxy;
 
-@interface PeerBrowser : NSObject <NSNetServiceBrowserDelegate>
+@interface BWPeerBrowser : NSObject <NSNetServiceBrowserDelegate>
 
 @property (nonatomic, retain) NSMutableArray *peerArray;
 @property (nonatomic, retain) NSNetServiceBrowser *peerBrowser;
@@ -20,6 +20,6 @@ extern NSString * const PeerBrowserDidChangeCountNotification;
 - (void)startSearchingForPeers;
 - (void)stopSearchingForPeers;
 - (NSInteger)connectedPeersCount;
-- (PeerProxy *)peerAtIndex:(NSUInteger)index;
+- (BWPeerProxy *)peerAtIndex:(NSUInteger)index;
 
 @end

@@ -1,28 +1,28 @@
 //
-//  PeerProxy.m
+//  BWPeerProxy.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "PeerProxy.h"
-#import "Protocol.h"
-#import "MessageBroker.h"
+#import "BWPeerProxy.h"
+#import "BWProtocol.h"
+#import "BWMessageBroker.h"
 #import "AsyncSocket.h"
-#import "MessageObject.h"
+#import "BWMessageObject.h"
 
-@interface PeerProxy ()
+@interface BWPeerProxy ()
 
 @property (nonatomic, retain) NSNetService *netService;
 @property (nonatomic, retain) NSNetService *service;
 @property (nonatomic, retain) AsyncSocket *socket;
-@property (nonatomic, retain) MessageBroker *messageBroker;
+@property (nonatomic, retain) BWMessageBroker *messageBroker;
 
 @end
 
 
-@implementation PeerProxy
+@implementation BWPeerProxy
 
 @synthesize netService = _netService;
 @synthesize messageBroker = _messageBroker;
@@ -77,7 +77,7 @@
 
 - (void)sendVoiceCallRequest
 {
-    MessageObject *newMessage = [[[MessageObject alloc] init] autorelease];
+    BWMessageObject *newMessage = [[[BWMessageObject alloc] init] autorelease];
     newMessage.kind = MessageKindVoiceCallRequest;
     newMessage.body = [self.chatSession.peerID dataUsingEncoding:NSUTF8StringEncoding];
     [self.messageBroker sendMessage:newMessage];
@@ -128,7 +128,7 @@
 
 -(void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port 
 {
-    self.messageBroker = [[[MessageBroker alloc] initWithAsyncSocket:sock] autorelease];
+    self.messageBroker = [[[BWMessageBroker alloc] initWithAsyncSocket:sock] autorelease];
     [sock release];
     self.messageBroker.delegate = self;
     self.connected = YES;
@@ -141,26 +141,18 @@
 
 #pragma mark - MessageBroker Delegate Methods
 
-- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(MessageObject *)message 
+- (void)messageBroker:(BWMessageBroker *)server didReceiveMessage:(BWMessageObject *)message 
 {
     switch (message.kind) 
     {
         case MessageKindVoiceCallRequest:
         {
-//            NSString *peerID = [[[NSString alloc] initWithData:message.body 
-//                                                      encoding:NSUTF8StringEncoding] autorelease];
-//            
-//            NSString *sessionId = @"bluewoki";
-//            NSString *name = [[UIDevice currentDevice] name];
-//            self.chatSession = [[[GKSession alloc] initWithSessionID:sessionId 
-//                                                         displayName:name 
-//                                                         sessionMode:GKSessionModePeer] autorelease];
-//            self.chatSession.available = YES;
-//
-//            if ([self.delegate respondsToSelector:@selector(proxy:didReceiveCallRequestFromPeer:)])
-//            {
-//                [self.delegate proxy:self didReceiveCallRequestFromPeer:peerID];
-//            }
+            NSString *peerID = [[[NSString alloc] initWithData:message.body 
+                                                      encoding:NSUTF8StringEncoding] autorelease];
+            if ([self.delegate respondsToSelector:@selector(proxy:didReceiveCallRequestFromPeer:)])
+            {
+                [self.delegate proxy:self didReceiveCallRequestFromPeer:peerID];
+            }
             break;
         }
             

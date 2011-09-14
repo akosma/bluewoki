@@ -7,10 +7,10 @@
 //
 
 #import "BWConnection.h"
-#import "PeerServiceDelegate.h"
-#import "PeerProxyDelegate.h"
+#import "BWPeerServiceDelegate.h"
+#import "BWPeerProxyDelegate.h"
 
-@interface BWWifiConnection : BWConnection <PeerServiceDelegate,
-                                            PeerProxyDelegate>
+@interface BWWifiConnection : BWConnection <BWPeerServiceDelegate,
+                                            BWPeerProxyDelegate>
 
 @end

@@ -1,19 +1,19 @@
 //
-//  PeerService.m
+//  BWPeerService.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "PeerService.h"
-#import "Protocol.h"
-#import "MessageBroker.h"
+#import "BWPeerService.h"
+#import "BWProtocol.h"
+#import "BWMessageBroker.h"
 #import "AsyncSocket.h"
-#import "MessageObject.h"
+#import "BWMessageObject.h"
 
 
-@interface PeerService ()
+@interface BWPeerService ()
 
 @property (readwrite, retain) AsyncSocket *listeningSocket;
 @property (readwrite, retain) AsyncSocket *connectionSocket;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation PeerService
+@implementation BWPeerService
 
 @synthesize messageBroker = _messageBroker;
 @synthesize listeningSocket = _listeningSocket;
@@ -95,7 +95,7 @@
 
 -(void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port 
 {
-    self.messageBroker = [[[MessageBroker alloc] initWithAsyncSocket:sock] autorelease];
+    self.messageBroker = [[[BWMessageBroker alloc] initWithAsyncSocket:sock] autorelease];
     self.messageBroker.delegate = self;
     self.connected = YES;
 }
@@ -109,7 +109,7 @@
 
 #pragma mark - MessageBroker Delegate Methods
 
-- (void)messageBroker:(MessageBroker *)server didReceiveMessage:(MessageObject *)message 
+- (void)messageBroker:(BWMessageBroker *)server didReceiveMessage:(BWMessageObject *)message 
 {
     switch (message.kind) 
     {

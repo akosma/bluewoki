@@ -1,19 +1,19 @@
 //
-//  PeerBrowser.m
+//  BWPeerBrowser.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "PeerBrowser.h"
-#import "Protocol.h"
-#import "PeerProxy.h"
+#import "BWPeerBrowser.h"
+#import "BWProtocol.h"
+#import "BWPeerProxy.h"
 
 NSString * const PeerBrowserDidChangeCountNotification = @"PeerBrowserDidChangeCountNotification";
 
 
-@implementation PeerBrowser
+@implementation BWPeerBrowser
 
 @synthesize peerArray = _peerArray;
 @synthesize peerBrowser = _peerBrowser;
@@ -61,7 +61,7 @@ NSString * const PeerBrowserDidChangeCountNotification = @"PeerBrowserDidChangeC
                                                         object:self];
 }
 
-- (PeerProxy *)peerAtIndex:(NSUInteger)index
+- (BWPeerProxy *)peerAtIndex:(NSUInteger)index
 {
     return [self.peerArray objectAtIndex:index];
 }
@@ -76,7 +76,7 @@ NSString * const PeerBrowserDidChangeCountNotification = @"PeerBrowserDidChangeC
     {
         if (![[service name] isEqualToString:[UIDevice currentDevice].name])
         {
-            PeerProxy *peer = [PeerProxy proxyWithService:service];
+            BWPeerProxy *peer = [BWPeerProxy proxyWithService:service];
             [self.peerArray addObject:peer];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:PeerBrowserDidChangeCountNotification
@@ -91,8 +91,8 @@ NSString * const PeerBrowserDidChangeCountNotification = @"PeerBrowserDidChangeC
 {
     if (!more)
     {
-        PeerProxy *peerToRemove = nil;
-        for (PeerProxy *proxy in self.peerArray)
+        BWPeerProxy *peerToRemove = nil;
+        for (BWPeerProxy *proxy in self.peerArray)
         {
             if ([proxy.serviceName isEqualToString:[service name]])
             {

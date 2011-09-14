@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "BWBrowserControllerDelegate.h"
 
-@class PeerBrowser;
+@class BWPeerBrowser;
 
 @interface BWBrowserController : UITableViewController
 
-@property (nonatomic, retain) PeerBrowser *browser;
+@property (nonatomic, retain) BWPeerBrowser *browser;
 @property (nonatomic, assign) id<BWBrowserControllerDelegate> delegate;
 
 @end

@@ -7,13 +7,13 @@
 //
 
 #import "BWWifiConnection.h"
-#import "PeerService.h"
-#import "PeerProxy.h"
+#import "BWPeerService.h"
+#import "BWPeerProxy.h"
 
 @interface BWWifiConnection ()
 
-@property (nonatomic, retain) PeerService *service;
-@property (nonatomic, retain) PeerProxy *peerProxy;
+@property (nonatomic, retain) BWPeerService *service;
+@property (nonatomic, retain) BWPeerProxy *peerProxy;
 
 - (void)startChatWithPeerID:(NSString *)peerID;
 
@@ -38,7 +38,7 @@
 {
     [GKVoiceChatService defaultVoiceChatService].client = self;
 
-    self.service = [[[PeerService alloc] init] autorelease];
+    self.service = [[[BWPeerService alloc] init] autorelease];
     self.service.delegate = self;
     [self.service startService];
 }
@@ -138,23 +138,18 @@ didStartWithParticipantID:(NSString *)participantID
 {
 }
 
-#pragma mark - PeerServiceDelegate methods
+#pragma mark - BWPeerServiceDelegate methods
 
-- (void)peerService:(PeerService *)service didReceiveCallRequestFromPeer:(NSString *)peerID
+- (void)peerService:(BWPeerService *)service didReceiveCallRequestFromPeer:(NSString *)peerID
 {
     if (service == self.service)
     {
-        if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
-        {
-            [self.delegate connectionIsConnecting:self];
-        }
-        [self.chatSession connectToPeer:peerID withTimeout:60];
     }
 }
 
 #pragma mark - BWBrowserControllerDelegate methods
 
-- (void)peersBrowserController:(BWBrowserController *)controller didSelectPeer:(PeerProxy *)peer
+- (void)peersBrowserController:(BWBrowserController *)controller didSelectPeer:(BWPeerProxy *)peer
 {
     self.peerProxy = peer;
     self.peerProxy.delegate = self;
@@ -167,12 +162,33 @@ didStartWithParticipantID:(NSString *)participantID
 
 #pragma mark - PeerProxyDelegate methods
 
-- (void)proxyDidConnect:(PeerProxy *)proxy
+- (void)proxyDidConnect:(BWPeerProxy *)proxy
 {
     if (proxy == self.peerProxy)
     {
         self.peerProxy.chatSession = self.chatSession;
         [self.peerProxy sendVoiceCallRequest];
+    }
+}
+
+- (void)proxy:(BWPeerProxy *)proxy didReceiveCallRequestFromPeer:(NSString *)peerID;
+{
+    if (proxy == self.peerProxy)
+    {
+        NSString *sessionId = @"bluewoki";
+        NSString *name = [[UIDevice currentDevice] name];
+        GKSession* session = [[[GKSession alloc] initWithSessionID:sessionId 
+                                                       displayName:name 
+                                                       sessionMode:GKSessionModePeer] autorelease];
+        self.chatSession = session;
+        self.chatSession.delegate = self;
+        self.peerProxy.chatSession = self.chatSession;
+
+        if ([self.delegate respondsToSelector:@selector(connectionIsConnecting:)])
+        {
+            [self.delegate connectionIsConnecting:self];
+        }
+        [self.chatSession connectToPeer:peerID withTimeout:60];
     }
 }
 

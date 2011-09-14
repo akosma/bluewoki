@@ -7,8 +7,8 @@
 //
 
 #import "BWBrowserController.h"
-#import "PeerBrowser.h"
-#import "PeerProxy.h"
+#import "BWPeerBrowser.h"
+#import "BWPeerProxy.h"
 
 @interface BWBrowserController ()
 
@@ -80,7 +80,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.browser = [[[PeerBrowser alloc] init] autorelease];
+    self.browser = [[[BWPeerBrowser alloc] init] autorelease];
     [self.browser startSearchingForPeers];
 }
 
@@ -119,7 +119,7 @@
                                        reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    PeerProxy *peer = [self.browser peerAtIndex:indexPath.row];
+    BWPeerProxy *peer = [self.browser peerAtIndex:indexPath.row];
     cell.textLabel.text = peer.serviceName;
     
     return cell;
@@ -129,7 +129,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PeerProxy *peer = [self.browser peerAtIndex:indexPath.row];
+    BWPeerProxy *peer = [self.browser peerAtIndex:indexPath.row];
     if ([self.delegate respondsToSelector:@selector(peersBrowserController:didSelectPeer:)])
     {
         [self.delegate peersBrowserController:self didSelectPeer:peer];

@@ -1,19 +1,19 @@
 //
-//  MessageBroker.m
+//  BWMessageBroker.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "MessageBroker.h"
+#import "BWMessageBroker.h"
 #import "AsyncSocket.h"
-#import "MessageObject.h"
+#import "BWMessageObject.h"
 
 static const unsigned int MESSAGE_HEADER_SIZE = sizeof(UInt64);
 static const float SOCKET_TIMEOUT = -1.0;
 
-@interface MessageBroker ()
+@interface BWMessageBroker ()
 
 @property (nonatomic, retain) AsyncSocket *socket;
 @property (nonatomic) BOOL connectionLostUnexpectedly;
@@ -23,7 +23,7 @@ static const float SOCKET_TIMEOUT = -1.0;
 @end
 
 
-@implementation MessageBroker
+@implementation BWMessageBroker
 
 @synthesize delegate = _delegate;
 @synthesize socket = _socket;
@@ -66,7 +66,7 @@ static const float SOCKET_TIMEOUT = -1.0;
 
 #pragma mark - Public methods
 
--(void)sendMessage:(MessageObject *)message 
+-(void)sendMessage:(BWMessageObject *)message 
 {
     [self.messageQueue addObject:message];
     NSData *messageData = [NSKeyedArchiver archivedDataWithRootObject:message];
@@ -124,7 +124,7 @@ static const float SOCKET_TIMEOUT = -1.0;
             // Message body. Pass to delegate
             if ([self.delegate respondsToSelector:@selector(messageBroker:didReceiveMessage:)] ) 
             {
-                MessageObject *message = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                BWMessageObject *message = [NSKeyedUnarchiver unarchiveObjectWithData:data];
                 [self.delegate messageBroker:self didReceiveMessage:message];
             }
             
@@ -151,7 +151,7 @@ static const float SOCKET_TIMEOUT = -1.0;
     if (tag == 1) 
     {
         // If the message is now complete, remove from queue, and tell the delegate
-        MessageObject *message = [[[self.messageQueue objectAtIndex:0] retain] autorelease];
+        BWMessageObject *message = [[[self.messageQueue objectAtIndex:0] retain] autorelease];
         [self.messageQueue removeObjectAtIndex:0];
         if ([self.delegate respondsToSelector:@selector(messageBroker:didSendMessage:)])
         {

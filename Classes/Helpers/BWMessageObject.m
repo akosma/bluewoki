@@ -1,15 +1,15 @@
 //
-//  Message.m
+//  BWMessageObject.m
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
 //  Copyright 2011 akosma software. All rights reserved.
 //
 
-#import "MessageObject.h"
+#import "BWMessageObject.h"
 
 
-@implementation MessageObject
+@implementation BWMessageObject
 
 @synthesize kind = _kind;
 @synthesize body = _body;

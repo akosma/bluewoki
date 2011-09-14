@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @class BWBrowserController;
-@class PeerProxy;
+@class BWPeerProxy;
 
 
 @protocol BWBrowserControllerDelegate <NSObject>
 
 @optional
-- (void)peersBrowserController:(BWBrowserController *)controller didSelectPeer:(PeerProxy *)peer;
+- (void)peersBrowserController:(BWBrowserController *)controller didSelectPeer:(BWPeerProxy *)peer;
 
 @end

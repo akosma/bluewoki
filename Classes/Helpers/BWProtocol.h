@@ -1,5 +1,5 @@
 //
-//  Protocol.h
+//  BWProtocol.h
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.

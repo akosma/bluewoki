@@ -1,5 +1,5 @@
 //
-//  Message.h
+//  BWMessageObject.h
 //  bluewoki
 //
 //  Created by Adrian on 5/21/11.
@@ -15,7 +15,7 @@ typedef enum {
     MessageKindEndVoiceCall = 2
 } MessageKind;
 
-@interface MessageObject : NSObject <NSCoding>
+@interface BWMessageObject : NSObject <NSCoding>
 
 @property (nonatomic) MessageKind kind;
 @property (nonatomic, retain) NSData *body;
