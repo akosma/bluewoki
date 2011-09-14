@@ -199,6 +199,7 @@
     }
     else
     {
+        [self.connection denyIncomingCall];
         [self closeConnectionWithMessage:NSLocalizedString(@"disconnected", @"Shown when the other user disconnects")];
     }
 }

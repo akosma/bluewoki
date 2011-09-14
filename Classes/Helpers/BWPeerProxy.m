@@ -76,7 +76,7 @@
 - (void)sendVoiceCallRequestWithPeerID:(NSString *)peerID
 {
     BWMessageObject *newMessage = [[[BWMessageObject alloc] init] autorelease];
-    newMessage.kind = MessageKindVoiceCallRequest;
+    newMessage.kind = BWMessageKindVoiceCallRequest;
     newMessage.body = [peerID dataUsingEncoding:NSUTF8StringEncoding];
     [self.messageBroker sendMessage:newMessage];
 }
@@ -138,15 +138,6 @@
 {
     switch (message.kind) 
     {
-        case MessageKindEndVoiceCall:
-        {
-            if ([self.delegate performSelector:@selector(proxyDidConnect:)])
-            {
-                [self.delegate proxyDidDisconnect:self];
-            }
-            break;
-        }
-            
         default:
             break;
     }

@@ -50,6 +50,11 @@
     // Overridden by subclasses
 }
 
+- (void)denyIncomingCall
+{
+    // Overridden by subclasses
+}
+
 - (GKSession *)createChatSession
 {
     NSString *sessionId = @"bluewoki";

@@ -27,6 +27,7 @@
 - (void)connect;
 - (void)disconnect;
 - (void)answerIncomingCall;
+- (void)denyIncomingCall;
 - (GKSession *)createChatSession;
 
 @end

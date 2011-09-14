@@ -69,6 +69,11 @@
                         withTimeout:60];
 }
 
+- (void)denyIncomingCall
+{
+    self.chatSession.available = NO;
+}
+
 #pragma mark - GKSessionDelegate methods
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
@@ -93,7 +98,14 @@
                 break;
                 
             case GKPeerStateUnavailable:
+            {
+                self.connected = NO;
+                if ([self.delegate respondsToSelector:@selector(connectionDidDisconnect:)])
+                {
+                    [self.delegate connectionDidDisconnect:self];
+                }
                 break;
+            }
                 
             case GKPeerStateConnected:
             {

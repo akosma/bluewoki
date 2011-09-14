@@ -113,7 +113,7 @@
 {
     switch (message.kind) 
     {
-        case MessageKindVoiceCallRequest:
+        case BWMessageKindVoiceCallRequest:
         {
             NSString *peerID = [[[NSString alloc] initWithData:message.body 
                                                       encoding:NSUTF8StringEncoding] autorelease];
@@ -121,13 +121,6 @@
             {
                 [self.delegate peerService:self didReceiveCallRequestFromPeer:peerID];
             }
-            break;
-        }
-            
-        case MessageKindEndVoiceCall:
-        {
-//            [self.chatSession disconnectFromAllPeers];
-//            self.chatSession = nil;
             break;
         }
             

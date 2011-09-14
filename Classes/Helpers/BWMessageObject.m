@@ -19,7 +19,7 @@
     self = [super init];
     if (self)
     {
-        _kind = MessageKindNone;
+        _kind = BWMessageKindNone;
     }
     return self;
 }
@@ -29,7 +29,7 @@
     self = [super init];
     if (self) 
     {
-        _kind = (MessageKind)[coder decodeIntForKey:@"kind"];
+        _kind = (BWMessageKind)[coder decodeIntForKey:@"kind"];
         _body = [[coder decodeObjectForKey:@"body"] retain];
     }
     return self;

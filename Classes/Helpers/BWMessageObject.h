@@ -10,14 +10,14 @@
 
 
 typedef enum {
-    MessageKindNone = 0,
-    MessageKindVoiceCallRequest = 1,
-    MessageKindEndVoiceCall = 2
-} MessageKind;
+    BWMessageKindNone = 0,
+    BWMessageKindVoiceCallRequest = 1,
+    BWMessageKindVoiceCallRequestDenied = 2
+} BWMessageKind;
 
 @interface BWMessageObject : NSObject <NSCoding>
 
-@property (nonatomic) MessageKind kind;
+@property (nonatomic) BWMessageKind kind;
 @property (nonatomic, retain) NSData *body;
 
 @end
