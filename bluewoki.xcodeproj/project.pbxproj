@@ -11,13 +11,13 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		30A5F0C91C65F0A000653D86 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A5F0C81C65F0A000653D86 /* GameKit.framework */; };
 		3A57D1051420939E002E5F5D /* BWBluetoothConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D1041420939E002E5F5D /* BWBluetoothConnection.m */; };
 		3A57D109142098BC002E5F5D /* BWConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D108142098BC002E5F5D /* BWConnection.m */; };
 		3A57D10C1420A06E002E5F5D /* BWWifiConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A57D10B1420A06E002E5F5D /* BWWifiConnection.m */; };
 		3A5C41D313881C0A008FB231 /* BWRootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C41D213881C0A008FB231 /* BWRootController.xib */; };
 		3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */; };
 		3A5FBAEE0FF8B0400060478C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAED0FF8B0400060478C /* AVFoundation.framework */; };
-		3A5FBAF00FF8B0480060478C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5FBAEF0FF8B0480060478C /* GameKit.framework */; };
 		3A5FBAF80FF8B0D50060478C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF60FF8B0D50060478C /* Default.png */; };
 		3A5FBAF90FF8B0D50060478C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5FBAF70FF8B0D50060478C /* Icon.png */; };
 		3A61C07314208C3100FEA33D /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 3A61C07214208C3100FEA33D /* Entitlements.entitlements */; };
@@ -49,6 +49,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30A5F0C81C65F0A000653D86 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* bluewoki_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluewoki_Prefix.pch; sourceTree = "<group>"; };
 		3A57D1031420939E002E5F5D /* BWBluetoothConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWBluetoothConnection.h; sourceTree = "<group>"; };
 		3A57D1041420939E002E5F5D /* BWBluetoothConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWBluetoothConnection.m; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		3A5C41D213881C0A008FB231 /* BWRootController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BWRootController.xib; sourceTree = "<group>"; };
 		3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A5FBAED0FF8B0400060478C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		3A5FBAEF0FF8B0480060478C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3A5FBAF60FF8B0D50060478C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3A5FBAF70FF8B0D50060478C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3A61C07214208C3100FEA33D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
@@ -110,11 +110,11 @@
 			files = (
 				3A891AAF13881FDD00804131 /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				30A5F0C91C65F0A000653D86 /* GameKit.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				3A5FBAEC0FF8B03B0060478C /* AudioToolbox.framework in Frameworks */,
 				3A5FBAEE0FF8B0400060478C /* AVFoundation.framework in Frameworks */,
-				3A5FBAF00FF8B0480060478C /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,10 +154,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30A5F0C81C65F0A000653D86 /* GameKit.framework */,
 				3A891AAE13881FDD00804131 /* CFNetwork.framework */,
 				3A5FBAEB0FF8B03B0060478C /* AudioToolbox.framework */,
 				3A5FBAED0FF8B0400060478C /* AVFoundation.framework */,
-				3A5FBAEF0FF8B0480060478C /* GameKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -316,7 +316,11 @@
 				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = N89857U563;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

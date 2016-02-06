@@ -154,7 +154,6 @@
     {
         self.peersBrowserController.delegate = nil;
         [self.navController dismissViewControllerAnimated:YES completion:nil];
-    
     }
     self.statusLabel.text = NSLocalizedString(@"connecting", @"Shown while the connection is negotiated");
 }
