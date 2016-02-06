@@ -124,7 +124,7 @@
             }
             self.peersBrowserController.delegate = self.connection;
 
-            [self presentModalViewController:self.navController animated:YES];
+            [self presentViewController:self.navController animated:YES completion:nil];
             break;
         }
             
@@ -153,7 +153,8 @@
     if (self.navController != nil)
     {
         self.peersBrowserController.delegate = nil;
-        [self.navController dismissModalViewControllerAnimated:YES];
+        [self.navController dismissViewControllerAnimated:YES completion:nil];
+    
     }
     self.statusLabel.text = NSLocalizedString(@"connecting", @"Shown while the connection is negotiated");
 }
