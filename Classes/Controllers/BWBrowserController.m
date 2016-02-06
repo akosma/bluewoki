@@ -71,7 +71,7 @@
 {
     [self.browser stopSearchingForPeers];
     self.delegate = nil;
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidUnload
